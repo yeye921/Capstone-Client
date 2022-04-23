@@ -1,5 +1,6 @@
 import React, { useState, Component } from "react";
 import { postData } from "../../../services/post";
+import MenuModal from "../../menu/MenuModal";
 import { PostContainer, BoxCotainer, PostButton, RestCotainer, Fee } from "./styles";
 
 const PostInput = () => {
@@ -9,7 +10,9 @@ const PostInput = () => {
         restaurant: ''
     })
 
-    const { title, orderTime, postTime, restaurant } = inputs;
+    const [openModal, setOpenModal] = useState(false);
+
+    const { title, orderTime, restaurant } = inputs;
     
     const [orderFee, setOrderFee] = useState({
         order: '', 
@@ -52,8 +55,15 @@ const PostInput = () => {
 
     const onPublish = () => {
         const time = new Date().toISOString();
-        
         postData(inputs, time);
+        //const postId = postData()?
+
+        //주문 정보 입력 Modal
+        setOpenModal(true);
+    }
+
+    const closeModal = () => {
+        setOpenModal(false);
     }
 
     return (
@@ -130,6 +140,8 @@ const PostInput = () => {
             <PostButton onClick={onPublish}>
                 등록하기
             </PostButton>
+
+            <MenuModal openModal={openModal} closeModal={closeModal}/>
         </PostContainer>
     )
 };
