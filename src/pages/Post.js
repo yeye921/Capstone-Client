@@ -1,12 +1,12 @@
 import React from "react";
 import Header from "../components/common/Header";
-import PostViewerContainer from "../containers/post/PostViewerContainer";
+import PostInputContainer from "../containers/post/PostInputContainer";
 
 const Post = () => {
     return (
         <>
             <Header name="나눔등록"/>
-            <PostViewerContainer />
+            <PostInputContainer />
         </>
     );
 };
