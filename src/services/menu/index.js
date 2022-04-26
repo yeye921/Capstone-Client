@@ -1,14 +1,15 @@
 import axios from 'axios';
 
-const POST_BASE_URL = "http://192.168.35.145:8080/post"
-//윤정ip
+const POST_BASE_URL = "http://localhost:8080/post"
 
 export const menuData = async(inputData) => {
     const headers = {
         'Access-Control-Allow-Origin' : "*"
     }
     try {
-        const response = await axios.post(POST_BASE_URL, {
+        const response = await axios.put(POST_BASE_URL, {
+            u_id: 1,
+            p_id: 1,
             menu: inputData.menu,
             price: inputData.price,
             request: inputData.request,
