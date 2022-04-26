@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-const POST_BASE_URL = "http://192.168.35.145:8080/post"
-//윤정ip
+const POST_BASE_URL = "http://localhost:8080/post"
 
 export const postData = async(inputData, postTime) => {
     const headers = {
