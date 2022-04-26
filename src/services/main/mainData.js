@@ -18,10 +18,10 @@ export const mainData = async({setLists, url}) => {
     }
 } 
 
-export const getDetail = async({id}) => {
+export const getDetail = async(setDetail, post) => {
     try {
-        const { detail } = await axios.get(BASE_URL + `/detail?postId=${id}`);
-        return detail;
+        const response = await axios.get(BASE_URL + `/detail?postId=${post}`);
+        setDetail(response.data);
     } catch(error) {
         console.error(error);
     }

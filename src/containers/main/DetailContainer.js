@@ -5,9 +5,9 @@ import DetailViewer from '../../components/main/detail/DetailViewer';
 
 const DetailContainer = () => {
     const { search } = useLocation();
-    const { postId } = queryString.parse(search);
+    const { pId } = queryString.parse(search);
 
-    return <DetailViewer post={postId}/>;
+    return <DetailViewer post={ pId }/>;
 }
 
 export default DetailContainer;

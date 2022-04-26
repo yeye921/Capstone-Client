@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { getDetail } from "../../../services/main/mainData";
 
 const DetailViewer = (postId) => {
-    const data = getDetail(postId);
+    const [details, setDetails] = useState(null);
 
-    console.log(data);
+    useEffect(()=>{
+        getDetail(setDetails, post);
+    },[]);
 
     return (
-        <></>
+        <>
+            <div>{details.title}</div>
+        </>
     )
 }
 
