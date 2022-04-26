@@ -57,7 +57,7 @@ const PostInput = () => {
         const time = new Date().toISOString();
         postData(inputs, time);
         //const postId = postData(inputs, time);
-
+        
         //주문 정보 입력 Modal
         setOpenModal(true);
     }
