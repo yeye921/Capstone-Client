@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
     padding-top: 1rem;
@@ -27,9 +28,17 @@ const Space = styled.div`
 
 
 const ListItem = ({item}) => {
-    const {title, r_name, order_time, min_price, fee} = item;
+    const {p_id, title, r_name, order_time, min_price, fee} = item;
+    const navigate = useNavigate();
+    const onClick = () => {
+      navigate('/login', {  // 게시글 상세페이지 주소로 수정
+        state: {
+          p_id: "1111",
+        }
+      })
+    };
     return (
-      <Container>
+      <Container onClick={onClick}>
         <Title>{title}</Title>
         <Detail1>
           <div>{r_name}</div>

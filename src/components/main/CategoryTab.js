@@ -77,18 +77,18 @@ const CategoryTab = () => {
       {/* 각 카테고리 탭 라우터 처리 + 나눔 검색 페이지 라우터 처리 */}
       {/* api 호출할 url 지정해줘야 함 (ex.http://192.168.35.145:8080/main/mart) */}
       <Routes>
-          <Route path="/" element={<Content url="" value="전체"/>} />
-          <Route path="chicken" element={<Content url="" value="치킨"/>} />
-          <Route path="pizza" element={<Content url="" value="피자"/>} />
-          <Route path="chinese" element={<Content url="" value="중식"/>} />
-          <Route path="korean" element={<Content url="" value="한식"/>} />
-          <Route path="japanese" element={<Content url="" value="일식"/>} />
-          <Route path="pork" element={<Content url="" value="족발"/>} />
-          <Route path="night" element={<Content url="" value="야식"/>} />
-          <Route path="bunsik" element={<Content url="" value="분식"/>} />
-          <Route path="cafe" element={<Content url="" value="카페"/>} />
-          <Route path="mart" element={<Content url="" value="편의점"/>} />
-          <Route path="search" element={<SearchContent url="www"/>} />
+          <Route path="/" element={<Content url="http://localhost:8080/main" value="전체"/>} />
+          <Route path="chicken" element={<Content url="http://localhost:8080/main/chicken" value="치킨"/>} />
+          <Route path="pizza" element={<Content url="http://localhost:8080/main/pizza" value="피자"/>} />
+          <Route path="chinese" element={<Content url="http://localhost:8080/main/chinese" value="중식"/>} />
+          <Route path="korean" element={<Content url="http://localhost:8080/main/korean" value="한식"/>} />
+          <Route path="japanese" element={<Content url="http://localhost:8080/main/japanese" value="일식"/>} />
+          <Route path="pork" element={<Content url="http://localhost:8080/main/pork" value="족발"/>} />
+          <Route path="night" element={<Content url="http://localhost:8080/main/night" value="야식"/>} />
+          <Route path="bunsik" element={<Content url="http://localhost:8080/main/bunsik" value="분식"/>} />
+          <Route path="cafe" element={<Content url="http://localhost:8080/main/cafe" value="카페"/>} />
+          <Route path="mart" element={<Content url="http://localhost:8080/main/mart" value="편의점"/>} />
+          <Route path="search" element={<SearchContent />} />
         </Routes>
     </Box>
   );

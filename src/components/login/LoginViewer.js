@@ -1,40 +1,38 @@
-import { React, useState } from 'react';
-import { Link } from 'react-router-dom';
-import MainButton from '../common/MainButton';
+import { React, useState } from "react";
+import { Link } from "react-router-dom";
+import MainButton from "../common/MainButton";
 import {
   Input,
   InputContainer,
   ButtonContainer1,
   ButtonContainer2,
-} from './LoginStyle';
-import { loginData } from '../../services/login/loginData';
+} from "./LoginStyle";
+import { loginData } from "../../services/login/loginData";
 
 const LoginViewer = () => {
-
   const [inputs, setInputs] = useState({
-    id: '',
-    pw: ''
-  })
-  
+    id: "",
+    pw: "",
+  });
+
   const { id, pw } = inputs;
-  
+
   const onChange = (e) => {
     const { name, value } = e.target;
     setInputs({
       ...inputs,
-      [name]: value
-    })
-  }
+      [name]: value,
+    });
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
     // 입력한 정보와 일치하는 데이터가 있으면 로그인시킴
     loginData(inputs);
     console.log(inputs);
-    alert('로그인이 완료되었습니다.');
-    window.location.replace('/main');
+    alert("로그인이 완료되었습니다.");
+    window.location.replace("/main");
   };
-
   return (
     <>
       <form onSubmit={onSubmit}>
@@ -62,7 +60,7 @@ const LoginViewer = () => {
         <ButtonContainer1>
           <MainButton
             color="rgb(73, 69, 64)"
-            background="rgb(239, 226, 131)"
+            background="rgb(250, 224, 82)"
             type="submit"
             text="로그인"
           />
