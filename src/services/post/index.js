@@ -17,6 +17,7 @@ export const postData = async(inputData, postTime) => {
             r_id: 1,
         }, {headers:headers}, {withCredentials: false})
         console.log(response);
+        return response;
     } catch(error) {
         console.error(error);
     }

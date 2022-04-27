@@ -1,7 +1,7 @@
 import axios from 'axios';
 // 매장명으로 검색: /main?rName=매장명
 // 게시글 제목으로 검색: /main?postTitle=제목
-const POST_BASE_URL = "http://192.168.35.145:8080/main"
+const POST_BASE_URL = "http://localhost:8080/main"
 
 // 검색 내용과 일치하는 게시글 불러오기
 export const searchData = async({setLists, searchValue}) => {

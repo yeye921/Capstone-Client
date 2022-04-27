@@ -10,7 +10,10 @@ const PostInput = () => {
         restaurant: ''
     })
 
-    const [openModal, setOpenModal] = useState(false);
+    const [openModal, setOpenModal] = useState({
+        postId: '',
+        isOpen: false
+    });
 
     const { title, orderTime, restaurant } = inputs;
     
@@ -55,15 +58,22 @@ const PostInput = () => {
 
     const onPublish = () => {
         const time = new Date().toISOString();
-        postData(inputs, time);
-        //const postId = postData(inputs, time);
-
+        postData(inputs, time).then(data => {
+            return setOpenModal({
+                postId: data.data.pid,
+                isOpen: true,
+            })
+        })
+        
         //주문 정보 입력 Modal
         setOpenModal(true);
     }
 
     const closeModal = () => {
-        setOpenModal(false);
+        setOpenModal({
+            ...openModal,
+            isOpen: false
+        });
     }
 
     return (

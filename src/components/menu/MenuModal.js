@@ -22,14 +22,14 @@ const MenuModal = ({openModal, setOpenModal, closeModal}) => {
     }
 
     const onPublish = () => {
-        menuData(inputs);
+        menuData(openModal.postId, inputs);
         closeModal();
         //채팅페이지로 이동
     }
 
     return (
         <>
-            {openModal ? 
+            {openModal.isOpen ? 
                 <Background onClick={closeModal}>
                     <ModalContainer onClick={e => e.stopPropagation()}>
                         <Title>주문 정보 입력</Title>

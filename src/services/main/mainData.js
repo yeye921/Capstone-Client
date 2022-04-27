@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const BASE_URL = "http://localhost:8080/main";
+
 // 전체 게시글 목록 불러오기 & 카테고리 별 게시글 목록 불러오기
 export const mainData = async({setLists, url}) => {
     const headers = {
@@ -15,3 +17,12 @@ export const mainData = async({setLists, url}) => {
         console.error(error);
     }
 } 
+
+export const getDetail = async(setDetails, post) => {
+    try {
+        const response = await axios.get(BASE_URL + `/detail?pId=${post}`);
+        setDetails(response.data);
+    } catch(error) {
+        console.error(error);
+    }
+}
