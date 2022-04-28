@@ -32,7 +32,14 @@ const DetailContainer = () => {
     }
     */
 
-    return <DetailViewer post={ post }/>;
+    return (
+        <>
+            {post?
+                <DetailViewer post={ post }/>
+                :null
+            }
+        </>
+    );
 }
 
 export default DetailContainer;

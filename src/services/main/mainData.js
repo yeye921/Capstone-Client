@@ -9,7 +9,6 @@ export const mainData = async(setLists, url) => {
         setLists();
         const response = await axios.get(url);
         setLists(response.data);  // 데이터는 response.data에 들어있음
-        // console.log(response.data);
     } catch(error) {
         console.error(error);
     }

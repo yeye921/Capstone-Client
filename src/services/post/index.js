@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const POST_BASE_URL = "http://3.39.125.17/post"
+const POST_BASE_URL = "https://3.39.125.17/post"
 
 export const postData = async(inputData, postTime) => {
     const headers = {
@@ -12,7 +12,7 @@ export const postData = async(inputData, postTime) => {
             order_time: inputData.orderTime,
             post_time: postTime,
             shooting_user: null,
-            p_location: inputData.restaurant,
+            p_location: null,
             u_id: 1,
             r_id: 1,
         }, {headers:headers}, {withCredentials: false})
