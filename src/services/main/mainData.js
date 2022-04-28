@@ -14,17 +14,18 @@ export const mainData = async(setLists, url) => {
         console.error(error);
     }
 } 
-/*
-export const getDetail = async(setDetails, post) => {
+
+export const getDetail = async(setPost, pId) => {
     try {
-        const response = await axios.get(BASE_URL + `/detail?pId=${post}`);
-        setDetails(response.data);
+        const response = await axios.get(BASE_URL + `/detail?pId=${pId}`);
+        setPost(response.data);
+        console.log(response.data);
     } catch(error) {
         console.error(error);
     }
 }
-*/
 
+/*
 export const getDetail = async(pId) => {
     try {
         const response = await axios.get(BASE_URL + `/detail?pId=${pId}`);
@@ -33,3 +34,4 @@ export const getDetail = async(pId) => {
         console.error(error);
     }
 }
+*/

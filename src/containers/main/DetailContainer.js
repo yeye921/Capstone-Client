@@ -8,20 +8,21 @@ import { getDetail } from '../../services/main/mainData';
 const DetailContainer = () => {
     const { search } = useLocation();
     const { pId } = queryString.parse(search);
-
-    /*server test
-
+    /*
     const dispatch = useDispatch();
     const { post } = useSelector((post) => ({
         post: post.post
     }))
-    //const [details, setDetails] = useState(null);
+    */
+    const [post, setPost] = useState(null);
 
     useEffect(() => {
-        dispatch(getDetail(pId));
-    }, [dispatch, pId]);
-    */
+        getDetail(setPost, pId);
+    }, []);
 
+    console.log(search);
+    
+    /*
     const post = {
         title: '짜장면',
         name: '하진',
@@ -29,6 +30,7 @@ const DetailContainer = () => {
         r_name:'홍콩반점 매탄점',
         min_price:1000,
     }
+    */
 
     return <DetailViewer post={ post }/>;
 }
