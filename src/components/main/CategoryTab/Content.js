@@ -11,7 +11,7 @@ const Content = (props) => {
     // 게시글 목록 불러오기
     useEffect(() => {
         mainData(setLists, props.url);
-    }, []);
+    }, []);      
     
        // 게시글 데이터 example
     // const [lists, setLists] = useState([

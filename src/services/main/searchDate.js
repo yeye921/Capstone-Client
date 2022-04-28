@@ -4,7 +4,7 @@ import axios from 'axios';
 
 // 검색 내용과 일치하는 게시글 불러오기
 export const searchData = async(setLists, searchValue) => {
-    const url = "http://localhost:8080/main?postTitle=" + searchValue
+    const url = "http://3.39.125.17/main?postTitle=" + searchValue
     try {
         // 요청이 시작 할 때에는 lists를 초기화
         setLists(null);
