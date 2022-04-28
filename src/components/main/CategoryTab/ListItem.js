@@ -28,12 +28,15 @@ const Space = styled.div`
 
 
 const ListItem = ({item}) => {
-    const {p_id, title, r_name, order_time, min_price, fee} = item;
+    const {pid, title, r_name, order_time, min_price, fee} = item;
+    
+    console.log(item);
+    
     const navigate = useNavigate();
     const onClick = () => {
-      navigate('/login', {  // 게시글 상세페이지 주소로 수정
+      navigate(`/main/detail?pId=${pid}`, {  // 게시글 상세페이지 주소로 수정
         state: {
-          p_id: "1111",
+          p_id: {pid},
         }
       })
     };

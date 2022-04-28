@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const POST_BASE_URL = "http://localhost:8080/post"
+const POST_BASE_URL = "http://3.39.125.17/post"
 
 export const menuData = async(postId, inputData) => {
     const headers = {

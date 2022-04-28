@@ -6,7 +6,6 @@ const buttonStyle = css`
     border-radius: 4px;
 
     color: #ffffff;
-    font-size: 1em;
     font-weight: bold;
 
     background-color: #F7D358;
