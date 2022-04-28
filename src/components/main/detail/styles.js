@@ -28,6 +28,7 @@ const DetailBlock = styled.div`
 `
 
 const DetailContent = ({ restaurant, minPrice }) => {
+    console.log(minPrice)
     return (
         <>
             <DetailBlock>

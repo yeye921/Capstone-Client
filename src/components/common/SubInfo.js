@@ -15,10 +15,10 @@ const SubInfoBlock = styled.div`
 `;
 
 const UserBlock = styled.div`
-    width: 15vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
 `
 
 const SubInfo = ({ user, orderTime }) => {

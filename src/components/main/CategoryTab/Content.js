@@ -32,8 +32,7 @@ const Content = (props) => {
     //   ])
 
     return(
-        <>  <div>{props.value}</div>
-            <div>전달받은 url {props.url}</div>
+        <>  
             <ListContainer>
               {/* lists === null ? <div>등록된 게시글이 없습니다</div>
               : {lists.map(item => (
