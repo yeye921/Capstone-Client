@@ -104,10 +104,6 @@ export default function Here() {
         // style={{width:"400px", height:"800px"}}
         style={{ width: '100vw', height: '80vh' }}
       ></div>
-      <div>
-        <button>dkdkd</button>
-        <div>dkdkdkdk</div>
-      </div>
     </div>
   );
 }

@@ -28,7 +28,6 @@ const Space = styled.div`
 
 const ListItem = ({ item }) => {
   const { pid, title, r_name, order_time, min_price, fee } = item;
-
   console.log(item);
 
   const navigate = useNavigate();
