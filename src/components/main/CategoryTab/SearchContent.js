@@ -46,8 +46,6 @@ const SearchContent = (props) => {
 
     return(
         <>  
-            <div>전달받은 url {props.url}</div>
-            <div>전달받은 value {searchValue}</div>
             <ListContainer>
 
               {lists && lists.map((item, index) => (
