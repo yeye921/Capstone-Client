@@ -14,8 +14,6 @@ const MenuModal = ({ openModal, setOpenModal, closeModal }) => {
   const { menu, price, request } = inputs;
   const navigate = useNavigate();
 
-  const pId = openModal.postId;
-
   const onChange = (e) => {
     const { name, value } = e.target;
 
@@ -31,7 +29,7 @@ const MenuModal = ({ openModal, setOpenModal, closeModal }) => {
     //채팅페이지로 이동
     navigate(`/chat`, {
       state: {
-        pId: { pId },
+        pId: openModal.postId,
       },
     });
   };

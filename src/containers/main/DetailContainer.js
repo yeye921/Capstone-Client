@@ -29,7 +29,7 @@ const DetailContainer = () => {
     min_price: 1000,
     p_id: 1,
   };*/
-  return <>{post ? <DetailViewer post={post} /> : null}</>;
+  return <>{post ? <DetailViewer post={post} postId={pId} /> : null}</>;
 };
 
 export default DetailContainer;
