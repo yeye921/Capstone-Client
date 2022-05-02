@@ -5,6 +5,7 @@ import Menu from './pages/Menu';
 import Login from './pages/Login';
 import Sign from './pages/Sign';
 import Detail from './pages/Detail'
+import Test from './pages/Test';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Route path="/main/" element={<Main />} />
             <Route path="/post" element={<Post />}/>
             <Route path="/menu" element={<Menu />}/>
+            <Route path="/test" element={<Test />}/>
         </Routes>
     </Router>
   );
