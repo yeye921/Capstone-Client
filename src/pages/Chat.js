@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../components/common/Button';
 
-const Test = () => {
+const Chat = () => {
 
     const onClick = (e) => {
         e.target.disabled = !e.target.disabled
@@ -17,4 +17,4 @@ const Test = () => {
     )
 }
 
-export default Test;
+export default Chat;

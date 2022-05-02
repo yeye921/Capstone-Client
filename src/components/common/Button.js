@@ -12,6 +12,9 @@ const buttonStyle = css`
     &:hover {
         background-color: #DBA901;
     }
+    &:disabled {
+        background-color: #BDBDBD;
+    }
 `
 
 const SytledButton = styled.button`

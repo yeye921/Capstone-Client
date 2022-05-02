@@ -6,8 +6,7 @@ import Login from './pages/Login';
 import Sign from './pages/Sign';
 import Detail from './pages/Detail';
 import Here from './pages/Here';
-import Detail from './pages/Detail'
-import Test from './pages/Test';
+import Chat from './pages/Chat';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -21,7 +20,7 @@ function App() {
             <Route path="/post" element={<Post />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/here" element={<Here />} />
-            <Route path="/test" element={<Test />}/>
+            <Route path="/chat" element={<Chat />}/>
         </Routes>
     </Router>
   );
