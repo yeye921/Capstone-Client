@@ -43,7 +43,6 @@ const Content = (props) => {
               {lists && lists.map((item, index) => (
                   <ListItem item={item} key={index} />
               ))}
-
             </ListContainer>
         </>
     )

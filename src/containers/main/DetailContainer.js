@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
 import queryString from 'query-string';
 import DetailViewer from '../../components/main/detail/DetailViewer';
 import { getDetail } from '../../services/main/mainData';
 
 const DetailContainer = () => {
-    const { search } = useLocation();
-    const { pId } = queryString.parse(search);
-    /*
+  const { search } = useLocation();
+  const { pId } = queryString.parse(search);
+  /*
     const dispatch = useDispatch();
     const { post } = useSelector((post) => ({
         post: post.post
     }))
     */
-    const [post, setPost] = useState(null);
+  const [post, setPost] = useState(null);
 
-    useEffect(() => {
-        getDetail(setPost, pId);
-    }, []);
+  useEffect(() => {
+    getDetail(setPost, pId);
+  }, []);
 
-    console.log(search);
-    
-    /*
+  console.log(search);
+
+  /*
     const post = {
         title: '짜장면',
         name: '하진',
@@ -32,7 +32,7 @@ const DetailContainer = () => {
     }
     */
 
-    return <DetailViewer post={ post }/>;
-}
+  return <>{post ? <DetailViewer post={post} /> : null}</>;
+};
 
 export default DetailContainer;
