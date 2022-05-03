@@ -5,7 +5,7 @@ import MainHeader from "../../common/MainHeader";
 import SubInfo from "../../common/SubInfo";
 import MenuModal from "../../menu/MenuModal";
 
-const DetailViewer = ({ post }) => {
+const DetailViewer = ({ post, postId }) => {
   const [openModal, setOpenModal] = useState({
     postId: "",
     isOpen: false,
@@ -15,13 +15,12 @@ const DetailViewer = ({ post }) => {
     return null;
   }
 
-  const { u_id, p_id, title, name, category, r_name, order_time, min_price } =
-    post;
+  const { title, name, category, r_name, order_time, min_price } = post;
 
   const onPublish = () => {
     //주문 정보 입력창으로 이동
     setOpenModal({
-      postId: p_id,
+      postId: postId,
       isOpen: true,
     });
   };
