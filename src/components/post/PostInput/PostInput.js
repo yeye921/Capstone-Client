@@ -69,7 +69,7 @@ const PostInput = () => {
     const time = new Date().toISOString();
     postData(inputs, time).then((data) => {
       return setOpenModal({
-        postId: data.data.pid,
+        postId: data.data.p_id,
         isOpen: true,
       });
     });
