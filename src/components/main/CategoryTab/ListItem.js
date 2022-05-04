@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   padding-top: 1rem;
@@ -27,15 +27,15 @@ const Space = styled.div`
 `;
 
 const ListItem = ({ item }) => {
-  const { pid, title, r_name, order_time, min_price, fee } = item;
+  const { p_id, title, r_name, order_time, min_price, fee } = item;
   console.log(item);
 
   const navigate = useNavigate();
   const onClick = () => {
-    navigate(`/main/detail?pId=${pid}`, {
+    navigate(`/main/detail?pId=${p_id}`, {
       // 게시글 상세페이지 주소로 수정
       state: {
-        pId: { pid },
+        pId: { p_id },
         // p_id: p_id,
       },
     });
