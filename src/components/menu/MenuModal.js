@@ -27,7 +27,7 @@ const MenuModal = ({ openModal, setOpenModal, closeModal }) => {
     menuData(openModal.postId, inputs);
     closeModal();
     //채팅페이지로 이동
-    navigate(`/chat`, {
+    navigate(`/chat?pId=${openModal.postId}`, {
       state: {
         pId: openModal.postId,
       },
