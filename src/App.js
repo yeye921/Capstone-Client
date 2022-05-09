@@ -7,6 +7,9 @@ import Sign from "./pages/Sign";
 import Detail from "./pages/Detail";
 import Here from "./pages/Here";
 import Chat from "./pages/Chat";
+
+import Search from "./components/post/PostInput/PostSearch";
+
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -21,6 +24,7 @@ function App() {
         <Route path="/menu" element={<Menu />} />
         <Route path="/here" element={<Here />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
     </Router>
   );
