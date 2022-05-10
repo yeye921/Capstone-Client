@@ -14,8 +14,10 @@ const SearchContainer = styled(BoxCotainer)`
 
   .list {
     grid-column: 2 / 3;
+    width: 12em;
     grid-row: 2 / 3;
-    border: 1px solid #444444;
+    border: 1px solid #cdcbcb;
+    border-radius: 3px;
   }
 `;
 

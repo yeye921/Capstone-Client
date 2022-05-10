@@ -39,6 +39,7 @@ const RestContainer = styled.div`
   margin-left: 15vw;
   margin-right: 10vw;
   font-size: 90%;
+  flex-wrap: wrap;
   div {
     color: #696969;
   }
@@ -47,7 +48,6 @@ const RestContainer = styled.div`
   }
   p {
     margin: 0px;
-    display: flex;
   }
 `;
 

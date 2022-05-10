@@ -1,9 +1,27 @@
-import axios from "axios";
 import React, { useState, Component, useEffect } from "react";
 import styled from "styled-components";
-import { RestContainer, Fee } from "./styles";
+import { RestContainer } from "./styles";
 
-const Container = styled.div``;
+const Fee = styled.div`
+  padding: 1em;
+  display: grid;
+  font-size: 90%;
+  margin-left: 15vw;
+  margin-right: 10vw;
+
+  div {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    color: #696969;
+    text-align: left;
+  }
+
+  p {
+    grid-column: 2 / 3;
+    text-align: right;
+    margin-top: 0;
+  }
+`;
 
 const RestSearch = ({ category, minPrice, orderFee }) => {
   const list = orderFee
@@ -13,7 +31,7 @@ const RestSearch = ({ category, minPrice, orderFee }) => {
   console.log(list);
 
   return (
-    <Container>
+    <>
       <RestContainer>
         <div>카테고리</div>
         <p>{category}</p>
@@ -22,15 +40,15 @@ const RestSearch = ({ category, minPrice, orderFee }) => {
         <div>최소주문금액</div>
         <p>{minPrice} 원</p>
       </RestContainer>
-      <RestContainer>
+      <Fee>
         <div>배달비</div>
         {list.map((data) => (
           <p key={data[0]}>
             {data[0]}원 이상 {data[1]}원
           </p>
         ))}
-      </RestContainer>
-    </Container>
+      </Fee>
+    </>
   );
 };
 
