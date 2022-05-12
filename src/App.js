@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Post from './pages/Post';
 import Main from './pages/Main';
 import Menu from './pages/Menu';
@@ -11,6 +12,21 @@ import Neighbor from './pages/Neighbor';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
+=======
+import "./App.css";
+import Post from "./pages/Post";
+import Main from "./pages/Main";
+import Menu from "./pages/Menu";
+import Login from "./pages/Login";
+import Sign from "./pages/Sign";
+import Detail from "./pages/Detail";
+import Here from "./pages/Here";
+import Chat from "./pages/Chat";
+import MyMap from "./pages/MyMap";
+import Neighbor from "./pages/Neighbor";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { RecoilRoot } from "recoil";
+>>>>>>> 7413c87 (FIX: 충돌 해결)
 
 function App() {
   return (
