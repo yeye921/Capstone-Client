@@ -1,3 +1,4 @@
+import './App.css';
 import Post from './pages/Post';
 import Main from './pages/Main';
 import Menu from './pages/Menu';
@@ -8,8 +9,6 @@ import Here from './pages/Here';
 import Chat from './pages/Chat';
 import MyMap from './pages/MyMap';
 import Neighbor from './pages/Neighbor';
-import ChatTest from './pages/ChatTest';
-
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 
@@ -28,7 +27,6 @@ function App() {
           <Route path="/chat" element={<Chat />} />
           <Route path="/mymap" element={<MyMap />} />
           <Route path="/neighbor" element={<Neighbor />} />
-          {/* <Route path="/chattest" element={<ChatTest />} /> */}
         </Routes>
       </Router>
     </RecoilRoot>
