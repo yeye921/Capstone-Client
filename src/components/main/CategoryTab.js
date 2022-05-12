@@ -21,8 +21,7 @@ const CategoryTab = () => {
     setSearchValue(e.target.value);
   };
 
-  // 사용자가 검색한 게시글 띄워주기 위해,
-  // search페이지로 이동하면서 데이터 전달함
+  // 사용자가 검색한 게시글 띄워주기 위해, search페이지로 이동하면서 데이터 전달함
   const searchClick = () => {
     navigate('search', {
       state: {
@@ -31,15 +30,25 @@ const CategoryTab = () => {
     });
     setSearchValue('');
   };
-
   return (
-    <Box sx={{ bgcolor: 'background.paper' }}>
+    <Box
+      sx={{
+        marginTop: '3.5rem',
+        marginBottom: '4.2rem',
+      }}
+    >
       <Tabs
         value={value}
         onChange={handleChange}
         variant="scrollable"
-        scrollButtons={true}
-        aria-label="scrollable prevent tabs example"
+        scrollButtons="auto"
+        aria-label="scrollable auto tabs example"
+        style={{
+          position: 'fixed',
+          backgroundColor: 'white',
+          width: '100%',
+          // overflow: 'auto',
+        }}
       >
         <Tab label="전체" component={Link} to="/main"></Tab>
         <Tab label="치킨" component={Link} to="/main/chicken"></Tab>
@@ -82,7 +91,7 @@ const CategoryTab = () => {
           element={<Content url="http://3.39.125.17/main" value="전체" />}
         />
         <Route
-          path="main/chicken"
+          path="chicken"
           element={<Content url="http://3.39.125.17/main/치킨" value="치킨" />}
         />
         <Route

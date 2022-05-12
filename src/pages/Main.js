@@ -5,7 +5,14 @@ const Main = () => {
   return (
     <>
       <MainContainer />
-      <div style={{position:"fixed", bottom: "0", width:"100%"}}>
+      <div
+        style={{
+          position: 'fixed',
+          bottom: '0',
+          width: '100%',
+          marginTop: '3rem',
+        }}
+      >
         <BottomTab />
       </div>
     </>
