@@ -1,0 +1,42 @@
+@font-face {
+  font-family: "AnyConv";
+  font-weight: 300;
+
+  src: url("./NotoSansKR-Thin.ttf") format("truetype"),
+    url("./AnyConv.com__NotoSansKR-Thin.woff") format("woff"),
+    url("./AnyConv.com__NotoSansKR-Thin.eot?iefix") format("embedded-opentype");
+}
+
+@font-face {
+  font-family: "AnyConv";
+  font-weight: 400;
+
+  src: url("./NotoSansKR-Regular.ttf") format("truetype"),
+    url("./AnyConv.com__NotoSansKR-Regular.woff") format("woff"),
+    url("./AnyConv.com__NotoSansKR-Regular.eot?iefix")
+      format("embedded-opentype");
+}
+
+@font-face {
+  font-family: "AnyConv";
+  font-weight: 500;
+
+  src: url("./NIXGONFONTS\ M\ 2.0.ttf") format("truetype"),
+    url("./AnyConv.com__NIXGONFONTS\ M\ 2.0.woff") format("woff"),
+    url("./AnyConv.com__NIXGONFONTS\ M\ 2.0.eot?iefix")
+      format("embedded-opentype");
+}
+
+@font-face {
+  font-family: "AnyConv";
+  font-weight: 700;
+
+  src: url("./NIXGONFONTS\ B\ 2.0.ttf") format("truetype"),
+    url("./AnyConv.com__NIXGONFONTS\ B\ 2.0.woff") format("woff"),
+    url("./AnyConv.com__NIXGONFONTS\ B\ 2.0.eot?iefix")
+      format("embedded-opentype");
+}
+
+* {
+  font-family: "AnyConv", sans-serif;
+}
