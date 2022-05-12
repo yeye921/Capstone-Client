@@ -1,12 +1,15 @@
 import React, { useState, Component } from "react";
 import { postData } from "../../../services/post";
 import MenuModal from "../../menu/MenuModal";
+import Search from "./PostSearch";
+import RestSearch from "./RestSearch";
 import {
   PostContainer,
   BoxCotainer,
   PostButton,
   RestCotainer,
   Fee,
+  InputBox,
 } from "./styles";
 
 const PostInput = () => {
@@ -27,6 +30,8 @@ const PostInput = () => {
     order: "",
     fee: "",
   });
+
+  const [rest, setRest] = useState("");
 
   const [list, setList] = useState([]);
 
@@ -82,27 +87,24 @@ const PostInput = () => {
     });
   };
 
+  const searchRest = (data) => {
+    console.log(data);
+    setRest(data);
+  };
+
   return (
     <PostContainer>
       <BoxCotainer>
         <div>제목</div>
-        <input
+        <InputBox
           placeholder="제목을 입력해주세요"
           name="title"
           value={title}
           onChange={onChange}
         />
       </BoxCotainer>
-      <BoxCotainer>
-        <div>매장</div>
-        <input
-          placeholder="매장을 입력해주세요"
-          name="restaurant"
-          value={restaurant}
-          onChange={onChange}
-        />
-      </BoxCotainer>
-      <RestCotainer>
+      <Search searchRest={searchRest} />
+      {/* <RestCotainer>
         <div>카테고리</div>
         <p>
           <select name="category">
@@ -111,36 +113,14 @@ const PostInput = () => {
             <option value="일식">일식</option>
           </select>
         </p>
-      </RestCotainer>
-      <RestCotainer>
-        <div>최소주문금액</div>
-        <p>
-          <input placeholder="금액을 입력해주세요" />원
-        </p>
-      </RestCotainer>
-      <RestCotainer>
-        <div>배달비</div>
-        <p>
-          <input
-            placeholder="주문금액"
-            name="order"
-            value={order}
-            onChange={onTextChange}
-          />
-          <input
-            placeholder="배달비"
-            name="fee"
-            value={fee}
-            onChange={onTextChange}
-          />
-          <button onClick={onAddFee}>+</button>
-        </p>
-      </RestCotainer>
-      <Fee>
-        {list.map((orderFee) => (
-          <p key={orderFee}>{orderFee}</p>
-        ))}
-      </Fee>
+      </RestCotainer> */}
+      {rest && (
+        <RestSearch
+          category={rest.category}
+          minPrice={rest.min_price}
+          orderFee={rest.order_fee}
+        />
+      )}
       <BoxCotainer>
         <div>주문예정시간</div>
         <input

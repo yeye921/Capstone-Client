@@ -1,14 +1,14 @@
 import React from "react";
-import Header from "../components/common/Header";
+import MainHeader from "../components/common/MainHeader";
 import PostInputContainer from "../containers/post/PostInputContainer";
 
 const Post = () => {
-    return (
-        <>
-            <Header name="나눔등록"/>
-            <PostInputContainer />
-        </>
-    );
+  return (
+    <>
+      <MainHeader text={"나눔등록"} />
+      <PostInputContainer />
+    </>
+  );
 };
 
 export default Post;
