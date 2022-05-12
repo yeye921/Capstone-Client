@@ -1,10 +1,10 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import App from './App';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import "./static/fonts/font.css";
 
-const rootElement = document.getElementById('root');
+const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 root.render(<App />);
 
