@@ -23,7 +23,7 @@ export default function Neighbor() {
       let container = document.getElementById('map');
       let options = {
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 8, // 지도의 확대 레벨
+        level: 4, // 지도의 확대 레벨
       };
 
       const map = new kakao.maps.Map(container, options);
@@ -52,7 +52,7 @@ export default function Neighbor() {
               setRoadAddr(
                 !!result[0].road_address
                   ? result[0].road_address.address_name
-                  : '',
+                  : ''
               );
               setLotAddr(result[0].address.address_name);
             }
@@ -106,7 +106,7 @@ export default function Neighbor() {
               setRoadAddr(
                 !!result[0].road_address
                   ? result[0].road_address.address_name
-                  : '',
+                  : ''
               );
               setLotAddr(result[0].address.address_name);
             }
@@ -127,11 +127,11 @@ export default function Neighbor() {
                 setRoadAddr(
                   !!result[0].road_address
                     ? result[0].road_address.address_name
-                    : '',
+                    : ''
                 );
                 setLotAddr(result[0].address.address_name);
               }
-            },
+            }
           );
         });
       }
@@ -150,19 +150,19 @@ export default function Neighbor() {
   };
   return (
     <div>
-      <div className="header">
-        <div className="text">현재 사는 동네가 이곳이 맞나요?</div>
+      <div className='header'>
+        <div className='text'>현재 사는 동네가 이곳이 맞나요?</div>
       </div>
 
-      <div id="map" style={{ width: '100vw', height: '76vh' }}></div>
+      <div id='map' style={{ width: '100vw', height: '76vh' }}></div>
 
-      <div className="bottom">
-        <div className="guide">마커를 움직여 위치를 조정하세요</div>
-        <div className="addr">{lotAddr}</div>
-        <div className="button">
+      <div className='bottom'>
+        <div className='guide'>마커를 움직여 위치를 조정하세요</div>
+        <div className='addr'>{lotAddr}</div>
+        <div className='button'>
           <Button
-            variant="contained"
-            type="submit"
+            variant='contained'
+            type='submit'
             onClick={buttonClick}
             style={{
               borderRadius: 15,

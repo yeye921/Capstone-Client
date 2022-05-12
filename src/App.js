@@ -17,16 +17,16 @@ function App() {
     <RecoilRoot>
       <Router>
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Sign />} />
-          <Route path="/main/detail" element={<Detail />} />
-          <Route path="/main/*" element={<Main />} />
-          <Route path="/post" element={<Post />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/here" element={<Here />} />
-          <Route path="/chat" element={<Chat />} />
-          <Route path="/mymap" element={<MyMap />} />
-          <Route path="/neighbor" element={<Neighbor />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<Sign />} />
+          <Route path='/main/detail' element={<Detail />} />
+          <Route path='/main/*' element={<Main />} />
+          <Route path='/post' element={<Post />} />
+          <Route path='/menu' element={<Menu />} />
+          <Route path='/here' element={<Here />} />
+          <Route path='/chat' element={<Chat />} />
+          <Route path='/mymap' element={<MyMap />} />
+          <Route path='/neighbor' element={<Neighbor />} />
         </Routes>
       </Router>
     </RecoilRoot>
