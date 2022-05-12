@@ -1,0 +1,84 @@
+/* Mymap.js 부분  */
+.map_wrap {
+  position: relative;
+  width: 100%;
+  height: 350px;
+}
+.title {
+  font-weight: bold;
+  display: block;
+}
+.hAddr {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  border-radius: 2px;
+  background: #fff;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 1;
+  padding: 5px;
+}
+#centerAddr {
+  display: block;
+  margin-top: 2px;
+  font-weight: normal;
+}
+.bAddr {
+  padding: 5px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.box {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.4rem;
+  /* height: 7vh; */
+  /* background-color: blue; */
+}
+
+/* mymap & neighbor 공통 */
+.header {
+  display: flex;
+  height: 3.5rem;
+  align-items: center;
+  background-color: rgb(104, 193, 251);
+}
+.text {
+  font-weight: bold;
+  font-size: large;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  color: white;
+  padding-right: 1rem;
+}
+
+/* Neighbor.js 부분  */
+.bottom {
+  height: 25vh;
+  /* display: flex; */
+  /* background-color: rgb(104, 193, 251); */
+}
+.guide {
+  text-align: center;
+  color: grey;
+  background-color: rgba(231, 230, 224, 0.678);
+}
+.addr {
+  text-align: center;
+  font-size: larger;
+  font-weight: bolder;
+  /* color: rgb(78, 170, 231); */
+  /* color: rgb(90, 90, 90); */
+  color: rgb(77, 78, 78);
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.button {
+  display: flex;
+  /* height: 8vh; */
+  align-items: center;
+  justify-content: center;
+}

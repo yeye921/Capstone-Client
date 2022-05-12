@@ -1,21 +1,27 @@
-import { React, useState } from "react";
-import { Link } from "react-router-dom";
-import MainButton from "../common/MainButton";
+import { React, useState } from 'react';
+import { Link } from 'react-router-dom';
+import MainButton from '../common/MainButton';
 import {
   Input,
   InputContainer,
   ButtonContainer1,
   ButtonContainer2,
-} from "./LoginStyle";
-import { loginData } from "../../services/login/loginData";
+} from './LoginStyle';
+import { loginData } from '../../services/login/loginData';
+import { idState } from '../../state';
+import { useRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
 
 const LoginViewer = () => {
+  const [uId, setuId] = useRecoilState(idState);
   const [inputs, setInputs] = useState({
-    id: "",
-    pw: "",
+    id: '',
+    pw: '',
   });
 
   const { id, pw } = inputs;
+
+  const navigate = useNavigate();
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -28,13 +34,18 @@ const LoginViewer = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     // 입력한 정보와 일치하는 데이터가 있으면 로그인시킴
-    loginData(inputs);
     console.log(inputs);
-    alert("로그인이 완료되었습니다.");
-    window.location.replace("/main");
+    if (loginData(inputs) === true) {
+      setuId(inputs.id); // for recoil
+      // alert('로그인이 완료되었습니다.');
+      navigate('/main');
+    } else {
+      alert('일치하는 회원 정보가 없습니다.');
+    }
   };
   return (
     <>
+      <div>uid{uId}</div>
       <form onSubmit={onSubmit}>
         <InputContainer>
           <Input
@@ -69,7 +80,7 @@ const LoginViewer = () => {
           <Link to="/signup">
             <MainButton
               color="rgb(73, 69, 64)"
-              background="rgb(94, 191, 236)"
+              background="rgb(104, 193, 251)"
               text="회원가입"
             />
           </Link>

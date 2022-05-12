@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Title = styled.p`
   font-size: 5rem;
   font-weight: bolder;
-  color: rgb(94, 191, 236);
+  color: rgb(104, 193, 251);
   justify-content: center;
   display: flex;
 `;
@@ -11,7 +11,7 @@ const Input = styled.input`
   font-size: large;
   font-style: initial;
   padding-left: 1rem;
-  width: 22rem;
+  width: 18rem;
   line-height: 3rem;
 `;
 const InputContainer = styled.div`
