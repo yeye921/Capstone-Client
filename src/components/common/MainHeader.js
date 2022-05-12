@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const Header = styled.div`
   display: flex;
@@ -12,6 +12,9 @@ const Header = styled.div`
   color: white;
   font-weight: bold;
   font-size: large;
+
+  // 추가함
+  position: fixed;
 `;
 
 const MainHeader = ({ text }) => {

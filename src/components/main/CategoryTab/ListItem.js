@@ -1,10 +1,20 @@
-import React from "react";
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
-  padding-top: 1rem;
   padding-left: 2rem;
+  width: 310px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  alignitems: center;
+
+  background-color: #ffffff;
+  margin: 0.5rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 6px;
 `;
 const Title = styled.div`
   font-size: large;
