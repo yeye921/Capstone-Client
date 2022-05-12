@@ -21,3 +21,23 @@ export const finishData = async (postId) => {
     console.error(error);
   }
 };
+
+export const ssondaData = async (uId, pId) => {
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+  };
+  try {
+    const response = await axios.put(
+      BASE_URL,
+      {
+        p_id: pId,
+        u_id: uId,
+      },
+      { headers: headers },
+      { withCredentials: false }
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};

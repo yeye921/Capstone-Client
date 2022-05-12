@@ -51,7 +51,7 @@ const DetailViewer = ({ post, postId }) => {
       />
 
       <DetailButton onClick={onPublish}>함께하기</DetailButton>
-      <MenuModal openModal={openModal} closeModal={closeModal} />
+      <MenuModal openModal={openModal} closeModal={closeModal} title={title} />
     </Container>
   );
 };
