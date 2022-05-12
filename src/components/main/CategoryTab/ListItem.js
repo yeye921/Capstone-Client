@@ -42,7 +42,7 @@ const Space = styled.div`
 `;
 
 const ListItem = ({ item }) => {
-  const { p_id, title, r_name, order_time, min_price, fee } = item;
+  const { p_id, title, r_name, order_time, min_price, post_fee } = item;
   console.log(item);
 
   const navigate = useNavigate();
@@ -66,7 +66,7 @@ const ListItem = ({ item }) => {
       <Detail2>
         <div>최소 주문 {min_price}원</div>
         <Space>|</Space>
-        <div>지금 참여하면 배달비 {fee}원</div>
+        <div>지금 참여하면 배달비 {post_fee}원</div>
       </Detail2>
     </Container>
   );
