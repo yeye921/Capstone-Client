@@ -50,7 +50,12 @@ const CategoryTab = () => {
           // overflow: 'auto',
         }}
       >
-        <Tab label="전체" component={Link} to="/main"></Tab>
+        <Tab
+          label="전체"
+          component={Link}
+          to="/main"
+          style={{ fontWeight: 'bold' }}
+        ></Tab>
         <Tab label="치킨" component={Link} to="/main/chicken"></Tab>
         <Tab label="피자/양식" component={Link} to="/main/pizza"></Tab>
         <Tab label="중식" component={Link} to="/main/chinese" />

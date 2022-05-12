@@ -23,7 +23,7 @@ export default function Neighbor() {
       let container = document.getElementById('map');
       let options = {
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 4, // 지도의 확대 레벨
+        level: 8, // 지도의 확대 레벨
       };
 
       const map = new kakao.maps.Map(container, options);

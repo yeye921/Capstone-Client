@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
-  padding-left: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   width: 310px;
   height: 100px;
   display: flex;
@@ -15,6 +16,10 @@ const Container = styled.div`
   margin: 0.5rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 6px;
+
+  &:hover {
+    background-color: #dba901;
+  }
 `;
 const Title = styled.div`
   font-size: large;
