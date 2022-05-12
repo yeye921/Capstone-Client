@@ -1,11 +1,11 @@
 import React from "react";
-import MainHeader from "../components/common/MainHeader";
+import Header from "../components/common/Header";
 import PostInputContainer from "../containers/post/PostInputContainer";
 
 const Post = () => {
   return (
     <>
-      <MainHeader text={"나눔등록"} />
+      <Header name={"나눔등록"} />
       <PostInputContainer />
     </>
   );
