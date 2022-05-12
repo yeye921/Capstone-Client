@@ -1,24 +1,24 @@
 /*global kakao */
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 // import { markerdata } from "../../data/markerData";
-import MainHeader from '../components/common/MainHeader';
-import './Here.css';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import { useNavigate } from 'react-router-dom';
+import MainHeader from "../components/common/MainHeader";
+import "./Here.css";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import { useNavigate } from "react-router-dom";
 
 export const markerdata = [
   {
-    title: '아주플러스원',
+    title: "아주플러스원",
     lat: 37.2787,
     lng: 127.0447,
   },
   {
-    title: '써니텔',
+    title: "써니텔",
     lat: 37.2759,
     lng: 127.0442,
   },
   {
-    title: '예일고시원',
+    title: "예일고시원",
     lat: 37.2779,
     lng: 127.0427,
   },
@@ -30,14 +30,14 @@ export default function Here() {
   // props로 참여자들 위치 받아와야 함
   const mapscript = (props) => {
     kakao.maps.load(() => {
-      let container = document.getElementById('map');
+      let container = document.getElementById("map");
       let options = {
         // 중심 위치 설정
         // center: new kakao.maps.LatLng(37.27790544003763, 127.04686160352978),
         center: new kakao.maps.LatLng(37.2775, 127.0438666666667),
         level: 3,
       };
-      const here = '어린이 공원';
+      const here = "어린이 공원";
       //map
       const map = new kakao.maps.Map(container, options);
 
@@ -55,7 +55,7 @@ export default function Here() {
       });
 
       // 이미지 마커
-      let imageSrc = 'https://cdn-icons-png.flaticon.com/512/929/929426.png', // 마커이미지의 주소
+      let imageSrc = "https://cdn-icons-png.flaticon.com/512/929/929426.png", // 마커이미지의 주소
         imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기
         imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션, 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
@@ -63,7 +63,7 @@ export default function Here() {
       let markerImage = new kakao.maps.MarkerImage(
           imageSrc,
           imageSize,
-          imageOption,
+          imageOption
         ),
         markerPosition = new kakao.maps.LatLng(37.2775, 127.0438666666667); // 마커가 표시될 위치
 
@@ -81,9 +81,9 @@ export default function Here() {
         '<div class="customoverlay">' +
         '  <a href="https://map.kakao.com/link/map/11394059" target="_blank">' + // for 링크
         // `   <span class="title">${here}</span>` +
-        `   <span class="title">최적의 나눔 위치 장소</span>` +
-        '  </a>' +
-        '</div>';
+        `   <span class="title">여기서 모여!</span>` +
+        "  </a>" +
+        "</div>";
 
       // 커스텀 오버레이가 표시될 위치
       let position = new kakao.maps.LatLng(37.2775, 127.0438666666667);
@@ -102,7 +102,7 @@ export default function Here() {
   }, []);
   const backClick = () => {
     // 뒤로 가기
-    navigate('/main'); // 채팅방 만들어지면 경로 수정하기
+    navigate("/main"); // 채팅방 만들어지면 경로 수정하기
   };
   return (
     <div>
@@ -111,8 +111,8 @@ export default function Here() {
           <ArrowBackIosNewIcon
             sx={{
               fontSize: 30,
-              color: 'white',
-              paddingLeft: '0.5rem',
+              color: "white",
+              paddingLeft: "0.5rem",
             }}
           />
         </div>
@@ -122,7 +122,7 @@ export default function Here() {
       <div
         id="map"
         // style={{width:"400px", height:"800px"}}
-        style={{ width: '100vw', height: '100vh' }}
+        style={{ width: "100vw", height: "100vh" }}
       ></div>
     </div>
   );

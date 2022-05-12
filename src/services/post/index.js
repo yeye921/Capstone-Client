@@ -16,7 +16,7 @@ export const postData = async (inputData, postTime) => {
         shooting_user: null,
         p_location: "null",
         u_id: 1,
-        r_id: 1,
+        r_id: inputData.restaurant,
       },
       { headers: headers },
       { withCredentials: false }
