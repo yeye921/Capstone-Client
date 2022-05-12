@@ -1,4 +1,3 @@
-import "./App.css";
 import Post from "./pages/Post";
 import Main from "./pages/Main";
 import Menu from "./pages/Menu";
