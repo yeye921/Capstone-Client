@@ -5,7 +5,6 @@ import { useLocation } from "react-router-dom";
 
 const Chat = () => {
   const { state } = useLocation();
-  console.log(state);
   return (
     <>
       <Header name={state.title} />

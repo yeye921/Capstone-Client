@@ -39,6 +39,14 @@ const ChatContainer = ({ state }) => {
 
     // navigate('/login');
   };
+
+  const onMap = (e) => {
+    navigate("/here", {
+      state: {
+        location: location,
+      },
+    });
+  };
   return (
     <>
       <Topbar location={location.place_name} />
@@ -51,6 +59,7 @@ const ChatContainer = ({ state }) => {
           }}
         />
       </IconButton>
+      <Button onClick={onMap}>지도</Button>
       <div>uid: {uId}</div>
     </>
   );

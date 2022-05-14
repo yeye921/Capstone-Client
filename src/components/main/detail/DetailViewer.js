@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getDetail } from "../../../services/main/mainData";
 import { Container, DetailContent, DetailButton } from "./styles";
-import MainHeader from "../../common/MainHeader";
 import SubInfo from "../../common/SubInfo";
 import MenuModal from "../../menu/MenuModal";
+import Header from "../../common/Header";
 
 const DetailViewer = ({ post, postId }) => {
   const [openModal, setOpenModal] = useState({
@@ -41,7 +41,7 @@ const DetailViewer = ({ post, postId }) => {
     */
   return (
     <Container>
-      <MainHeader text={title} />
+      <Header name={title} />
       <SubInfo user={name} orderTime={order_time} />
       <hr style={{ width: "90vw" }} />
       <DetailContent
