@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
-  padding-left: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   width: 310px;
   height: 100px;
   display: flex;
@@ -15,6 +16,10 @@ const Container = styled.div`
   margin: 0.5rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 6px;
+
+  &:hover {
+    background-color: #dba901;
+  }
 `;
 const Title = styled.div`
   font-size: large;
@@ -37,7 +42,7 @@ const Space = styled.div`
 `;
 
 const ListItem = ({ item }) => {
-  const { p_id, title, r_name, order_time, min_price, fee } = item;
+  const { p_id, title, r_name, order_time, min_price, post_fee } = item;
   console.log(item);
 
   const navigate = useNavigate();
@@ -61,7 +66,7 @@ const ListItem = ({ item }) => {
       <Detail2>
         <div>최소 주문 {min_price}원</div>
         <Space>|</Space>
-        <div>지금 참여하면 배달비 {fee}원</div>
+        <div>지금 참여하면 배달비 {post_fee}원</div>
       </Detail2>
     </Container>
   );

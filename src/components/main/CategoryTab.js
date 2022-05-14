@@ -50,7 +50,12 @@ const CategoryTab = () => {
           // overflow: 'auto',
         }}
       >
-        <Tab label="전체" component={Link} to="/main"></Tab>
+        <Tab
+          label="전체"
+          component={Link}
+          to="/main"
+          style={{ fontWeight: 'bold' }}
+        ></Tab>
         <Tab label="치킨" component={Link} to="/main/chicken"></Tab>
         <Tab label="피자/양식" component={Link} to="/main/pizza"></Tab>
         <Tab label="중식" component={Link} to="/main/chinese" />
@@ -92,50 +97,74 @@ const CategoryTab = () => {
         />
         <Route
           path="chicken"
-          element={<Content url="http://3.39.125.17/main/치킨" value="치킨" />}
+          element={
+            <Content url="http://3.39.125.17/main?category=치킨" value="치킨" />
+          }
         />
         <Route
           path="pizza"
           element={
-            <Content url="http://3.39.125.17/main/피자양식" value="피자" />
+            <Content
+              url="http://3.39.125.17/main?category=피자양식"
+              value="피자"
+            />
           }
         />
         <Route
           path="chinese"
-          element={<Content url="http://3.39.125.17/main/중식" value="중식" />}
+          element={
+            <Content url="http://3.39.125.17/main?category=중식" value="중식" />
+          }
         />
         <Route
           path="korean"
-          element={<Content url="http://3.39.125.17/main/한식" value="한식" />}
+          element={
+            <Content url="http://3.39.125.17/main?category=한식" value="한식" />
+          }
         />
         <Route
           path="japanese"
-          element={<Content url="http://3.39.125.17/main/일식" value="일식" />}
+          element={
+            <Content url="http://3.39.125.17/main?category=일식" value="일식" />
+          }
         />
         <Route
           path="pork"
           element={
-            <Content url="http://3.39.125.17/main/족발보쌈" value="족발" />
+            <Content
+              url="http://3.39.125.17/main?category=족발보쌈"
+              value="족발"
+            />
           }
         />
         <Route
           path="night"
-          element={<Content url="http://3.39.125.17/main/야식" value="야식" />}
+          element={
+            <Content url="http://3.39.125.17/main?category=야식" value="야식" />
+          }
         />
         <Route
           path="bunsik"
-          element={<Content url="http://3.39.125.17/main/분식" value="분식" />}
+          element={
+            <Content url="http://3.39.125.17/main?category=분식" value="분식" />
+          }
         />
         <Route
           path="cafe"
           element={
-            <Content url="http://3.39.125.17/main/카페디저트" value="카페" />
+            <Content
+              url="http://3.39.125.17/main?category=카페디저트"
+              value="카페"
+            />
           }
         />
         <Route
           path="mart"
           element={
-            <Content url="http://3.39.125.17/main/편의점" value="편의점" />
+            <Content
+              url="http://3.39.125.17/main?category=편의점"
+              value="편의점"
+            />
           }
         />
         <Route path="search" element={<SearchContent />} />

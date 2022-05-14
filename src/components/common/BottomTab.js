@@ -12,7 +12,7 @@ import { styled } from '@mui/material/styles';
 
 const BottomNavigationAction = styled(MuiBottomNavigationAction)(`
   &.Mui-selected {
-    color: rgb(94, 191, 236);
+    color: rgb(104, 193, 251);
   }
 `);
 
