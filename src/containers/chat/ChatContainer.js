@@ -28,14 +28,15 @@ const ChatContainer = ({ state }) => {
     console.log(data);
   }
 
-  const onClosing = (e) => {
-    e.target.disabled = !e.target.disabled;
-    localStorage.setItem("isClose", true);
-    // finishData(state.pId).then((data) => {
-    //   setLocation(data.data);
-    //   localStorage.setItem("pLocation", data.data);
-    // });
-      mutate({ p_id: state.pId });
+    const onClosing = (e) => {
+        e.target.disabled = !e.target.disabled;
+        localStorage.setItem("isClose", true);
+        // finishData(state.pId).then((data) => {
+        //   setLocation(data.data);
+        //   localStorage.setItem("pLocation", data.data);
+        // });
+        mutate({ p_id: state.pId });
+    }
       
   const onShooting = (e) => {
     setDisable(true);

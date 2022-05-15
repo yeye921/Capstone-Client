@@ -8,7 +8,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Header from "../components/common/Header";
 import axios from "axios";
 import { getLocationData } from "../services/chat";
-import { useNavigate } from "react-router-dom";
 
 export const markerdata = [
   {
