@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Banks from './Banks';
+import React, { useState } from "react";
+import Banks from "./Banks";
 import {
   Label,
   InputContainer,
@@ -10,19 +9,24 @@ import {
   AccountContainer,
   AccountInput,
   Button,
-  ButtonContainer
-} from './SignStyle';
-import { signData } from '../../../src/services/sign/signData';
+  ButtonContainer,
+} from "./SignStyle";
+import { signData } from "../../../src/services/sign/signData";
+import { useNavigate } from "react-router-dom";
+import { idState } from "../../state";
+import { useRecoilState } from "recoil";
 
 const SignViewer = () => {
+  const navigate = useNavigate();
+  const [uId, setuId] = useRecoilState(idState); // for recoil
 
   const [inputs, setInputs] = useState({
-    id: '',
+    id: "",
     // 여기에 인증번호 추가
-    name: '',
-    pw: '',
-    account: '',
-  })
+    name: "",
+    pw: "",
+    account: "",
+  });
   const { id, name, pw, account } = inputs;
 
   const onChange = (e) => {
@@ -30,27 +34,28 @@ const SignViewer = () => {
     setInputs({
       ...inputs,
       ["bank"]: bank, // bank정보 추가
-      [name]: value
-    })
-  }
+      [name]: value,
+    });
+  };
 
-  const [bank, setBank] = useState('');
-  const [pwCheck, setPwCheck] = useState('');
+  const [bank, setBank] = useState("");
+  const [pwCheck, setPwCheck] = useState("");
   const [pwError, setPwError] = useState(false);
 
-
-  // fetch 버전이랑 아닌 버전이랑 만들기
   const onSubmit = (e) => {
     e.preventDefault();
-    // 비밀번호와 비밀번호 체크가 다를 경우를 검증한다
+    // 비밀번호와 비밀번호 체크가 다를 경우를 검증
     if (pw !== pwCheck) {
       return setPwError(true);
     }
+    console.log(inputs);
 
-    console.log(inputs)
-    signData(inputs);
-    alert('회원가입이 완료되었습니다.');
-    window.location.replace('/login');
+    signData(inputs).then((result) => {
+      setuId(result); // for recoil
+      // console.log("uId", uId);
+      alert("회원가입이 완료되었습니다.");
+      navigate("/neighbor");
+    });
   };
 
   const onChangePwChk = (e) => {
@@ -72,7 +77,14 @@ const SignViewer = () => {
         </InputContainer>
         <InputContainer>
           <Label>비밀번호</Label>
-          <Input name="pw" type="password" value={pw} required onChange={onChange} autoComplete="off" />
+          <Input
+            name="pw"
+            type="password"
+            value={pw}
+            required
+            onChange={onChange}
+            autoComplete="off"
+          />
         </InputContainer>
         <InputContainer>
           <Label>비밀번호 체크</Label>
@@ -84,19 +96,26 @@ const SignViewer = () => {
             autoComplete="off"
           />
           {pwError && (
-            <div style={{ color: 'red', marginTop:'0.5rem' }}>비밀번호가 일치하지 않습니다.</div>
+            <div style={{ color: "red", marginTop: "0.5rem" }}>
+              비밀번호가 일치하지 않습니다.
+            </div>
           )}
         </InputContainer>
         <BankContainer>
-          <Banks setBank={setBank}/>
+          <Banks setBank={setBank} />
           <AccountContainer>
             <label>계좌번호</label>
             <br />
-            <AccountInput name="account" value={account} required onChange={onChange} />
+            <AccountInput
+              name="account"
+              value={account}
+              required
+              onChange={onChange}
+            />
           </AccountContainer>
         </BankContainer>
         <ButtonContainer>
-        <Button type="submit">가입하기</Button>
+          <Button type="submit">가입하기</Button>
         </ButtonContainer>
       </form>
     </Form>
