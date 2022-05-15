@@ -35,9 +35,8 @@ const ChatContainer = ({ state }) => {
     //   setLocation(data.data);
     //   localStorage.setItem("pLocation", data.data);
     // });
-    mutate({ p_id: state.pId });
-  };
-
+      mutate({ p_id: state.pId });
+      
   const onShooting = (e) => {
     setDisable(true);
     setColor("disabled");

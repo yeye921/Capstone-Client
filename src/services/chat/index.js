@@ -41,7 +41,6 @@ export const ssondaData = async (uId, pId) => {
     console.error(error);
   }
 };
-
 export const getLocationData = async (setUserInfo, pId) => {
   try {
     const response = await axios.get(BASE_URL + `?pId=${pId}`);
