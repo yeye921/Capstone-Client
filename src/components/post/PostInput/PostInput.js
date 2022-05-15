@@ -3,14 +3,7 @@ import { postData } from "../../../services/post";
 import MenuModal from "../../menu/MenuModal";
 import Search from "./PostSearch";
 import RestSearch from "./RestSearch";
-import {
-  PostContainer,
-  BoxCotainer,
-  PostButton,
-  RestCotainer,
-  Fee,
-  InputBox,
-} from "./styles";
+import { PostContainer, BoxCotainer, PostButton, InputBox } from "./styles";
 
 const PostInput = () => {
   const [inputs, setInputs] = useState({
@@ -26,24 +19,7 @@ const PostInput = () => {
 
   const { title, orderTime, restaurant } = inputs;
 
-  const [orderFee, setOrderFee] = useState({
-    order: "",
-    fee: "",
-  });
-
   const [rest, setRest] = useState("");
-
-  const [list, setList] = useState([]);
-
-  const { order, fee } = orderFee;
-
-  const onTextChange = (e) => {
-    const { value, name } = e.target;
-    setOrderFee({
-      ...orderFee,
-      [name]: value,
-    });
-  };
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -52,22 +28,6 @@ const PostInput = () => {
       ...inputs,
       [name]: value,
     });
-  };
-
-  const onTextReset = () => {
-    setOrderFee({
-      order: "",
-      fee: "",
-    });
-  };
-
-  const onAddFee = () => {
-    //중복체크
-    onTextReset();
-    setList((list) => [
-      ...list,
-      orderFee.order + "원 이상 " + orderFee.fee + "원",
-    ]);
   };
 
   const onPublish = () => {
@@ -88,8 +48,11 @@ const PostInput = () => {
   };
 
   const searchRest = (data) => {
-    console.log(data);
     setRest(data);
+    setInputs({
+      ...inputs,
+      restaurant: data.r_id,
+    });
   };
 
   return (
@@ -104,16 +67,6 @@ const PostInput = () => {
         />
       </BoxCotainer>
       <Search searchRest={searchRest} />
-      {/* <RestCotainer>
-        <div>카테고리</div>
-        <p>
-          <select name="category">
-            <option value="한식">한식</option>
-            <option value="중식">중식</option>
-            <option value="일식">일식</option>
-          </select>
-        </p>
-      </RestCotainer> */}
       {rest && (
         <RestSearch
           category={rest.category}
@@ -132,7 +85,7 @@ const PostInput = () => {
       </BoxCotainer>
       <PostButton onClick={onPublish}>등록하기</PostButton>
 
-      <MenuModal openModal={openModal} closeModal={closeModal} />
+      <MenuModal openModal={openModal} closeModal={closeModal} title={title} />
     </PostContainer>
   );
 };
