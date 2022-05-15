@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { Link, Route, Routes, useNavigate } from 'react-router-dom';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
-import { SearchContainer, Input } from './MainStyle';
-import { MdOutlineSearch } from 'react-icons/md';
-import Content from './CategoryTab/Content';
-import SearchContent from './CategoryTab/SearchContent';
+import React, { useState } from "react";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+import { SearchContainer, Input } from "./MainStyle";
+import { MdOutlineSearch } from "react-icons/md";
+import Content from "./CategoryTab/Content";
+import SearchContent from "./CategoryTab/SearchContent";
 
 const CategoryTab = () => {
   const [value, setValue] = React.useState(0);
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e, newValue) => {
@@ -23,18 +23,18 @@ const CategoryTab = () => {
 
   // 사용자가 검색한 게시글 띄워주기 위해, search페이지로 이동하면서 데이터 전달함
   const searchClick = () => {
-    navigate('search', {
+    navigate("search", {
       state: {
         searchValue: searchValue,
       },
     });
-    setSearchValue('');
+    setSearchValue("");
   };
   return (
     <Box
       sx={{
-        marginTop: '3.5rem',
-        marginBottom: '4.2rem',
+        marginTop: "3.5rem",
+        marginBottom: "4.2rem",
       }}
     >
       <Tabs
@@ -44,20 +44,15 @@ const CategoryTab = () => {
         scrollButtons="auto"
         aria-label="scrollable auto tabs example"
         style={{
-          position: 'fixed',
-          backgroundColor: 'white',
-          width: '100%',
+          position: "fixed",
+          backgroundColor: "white",
+          width: "100%",
           // overflow: 'auto',
         }}
       >
-        <Tab
-          label="전체"
-          component={Link}
-          to="/main"
-          style={{ fontWeight: 'bold' }}
-        ></Tab>
-        <Tab label="치킨" component={Link} to="/main/chicken"></Tab>
-        <Tab label="피자/양식" component={Link} to="/main/pizza"></Tab>
+        <Tab label="전체" component={Link} to="/main" />
+        <Tab label="치킨" component={Link} to="/main/chicken" />
+        <Tab label="피자/양식" component={Link} to="/main/pizza" />
         <Tab label="중식" component={Link} to="/main/chinese" />
         <Tab label="한식" component={Link} to="/main/korean" />
         <Tab label="일식/돈까스" component={Link} to="/main/japanese" />
@@ -79,10 +74,10 @@ const CategoryTab = () => {
           <MdOutlineSearch
             size={30}
             style={{
-              alignItems: 'center',
-              marginLeft: '0.3rem',
-              color: 'grey',
-              paddingTop: '0.2rem',
+              alignItems: "center",
+              marginLeft: "0.3rem",
+              color: "grey",
+              paddingTop: "0.2rem",
             }}
           />
         </div>
