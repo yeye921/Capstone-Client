@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
 import { menuData } from "../../services/menu";
+import { idState } from "../../state";
 import { Background, ModalContainer, ModalButton } from "../common/Modal";
 import { Text, MenuInput, Title } from "./style";
 
 const MenuModal = ({ openModal, setOpenModal, closeModal, title }) => {
+  //const uId = useRecoilValue(idState);
   const [inputs, setInputs] = useState({
     menu: "",
     price: "",
@@ -25,6 +28,7 @@ const MenuModal = ({ openModal, setOpenModal, closeModal, title }) => {
 
   const onPublish = () => {
     menuData(openModal.postId, inputs);
+    //menuData(uId, openModal.postId, inputs);
     closeModal();
 
     //채팅페이지로 이동

@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { QueryClient, useQuery } from "react-query";
 const BASE_URL = "http://3.39.125.17/chat";
 
 //모집마감
@@ -9,7 +9,7 @@ export const finishData = async (postId) => {
   };
   try {
     const response = await axios.post(
-      BASE_URL + `?pId=${postId}`,
+      BASE_URL,
       {
         p_id: postId,
       },
@@ -37,6 +37,16 @@ export const ssondaData = async (uId, pId) => {
       { withCredentials: false }
     );
     return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getLocationData = async (setUserInfo, pId) => {
+  try {
+    const response = await axios.get(BASE_URL + `?pId=${pId}`);
+    setUserInfo(response.data);
+    console.log(response);
   } catch (error) {
     console.error(error);
   }

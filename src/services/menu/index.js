@@ -10,7 +10,7 @@ export const menuData = async (postId, inputData) => {
     const response = await axios.put(
       POST_BASE_URL,
       {
-        u_id: 2,
+        u_id: 3,
         p_id: postId,
         menu: inputData.menu,
         price: inputData.price,

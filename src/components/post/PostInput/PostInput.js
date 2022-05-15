@@ -48,7 +48,6 @@ const PostInput = () => {
   };
 
   const searchRest = (data) => {
-    console.log(data);
     setRest(data);
     setInputs({
       ...inputs,
