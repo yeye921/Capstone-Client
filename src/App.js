@@ -30,6 +30,7 @@ function App() {
             <Route path="/chat" element={<Chat />} />
             <Route path="/mymap" element={<MyMap />} />
             <Route path="/neighbor" element={<Neighbor />} />
+            {/* <Route path="/test" element={<ChatTest />} /> */}
           </Routes>
         </Router>
       </QueryClientProvider>

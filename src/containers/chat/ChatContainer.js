@@ -10,16 +10,21 @@ import Topbar from "../../components/chat/Topbar";
 import { QueryClient, useMutation, useQuery } from "react-query";
 import axios from "axios";
 import { useHere } from "../../services/mutation";
+import NoticeBar from "../../components/chat/NoticeBar";
+import { useRecoilState } from "recoil";
+import { roadAddrState } from "../../state";
 
 const ChatContainer = ({ state }) => {
   const [color, setColor] = useState("success"); // 버튼 클릭 시 색상 변경
   const [disable, setDisable] = useState(false); // 버튼 클릭 시 disable처리
-  const [fee, setFee] = useState(0); // 채팅방 상단 배달비
+  const [fee, setFee] = useState(500); // 채팅방 상단 배달비
+  const [addr, setAddr] = useState(""); // 채팅방 상단 나눔 위치
   const [location, setLocation] = useState("");
 
-  // recoil로 선언한 사용자 로그인 아이디
-  const uId = useRecoilValue(idState);
-  const setuId = useSetRecoilState(idState);
+  // recoil에 저장된 변수들
+  const [uId, setuId] = useRecoilState(idState);
+  const [roadAddr, setRoadAddr] = useRecoilState(roadAddrState);
+
   const navigate = useNavigate();
 
   //const { pId } = queryString.parse(state);
@@ -44,8 +49,9 @@ const ChatContainer = ({ state }) => {
     setDisable(true);
     setColor("disabled");
     console.log(uId, state.pId);
-    ssondaData(2, 27); // 이건 됐음
+    ssondaData(uId, state.pId);
     setFee(0);
+    setAddr(roadAddr);
 
     // navigate('/login');
   };
@@ -75,6 +81,8 @@ const ChatContainer = ({ state }) => {
   return (
     <>
       {data && <Topbar location={data.place_name} />}
+      <NoticeBar fee={fee} addr={addr} />
+
       <Button id="closeBtn" onClick={onClosing}>
         모집마감
       </Button>
