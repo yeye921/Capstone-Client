@@ -8,30 +8,17 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Header from "../components/common/Header";
 import axios from "axios";
 import { getLocationData } from "../services/chat";
-
-export const markerdata = [
-  {
-    title: "아주플러스원",
-    lat: 37.2787,
-    lng: 127.0447,
-  },
-  {
-    title: "써니텔",
-    lat: 37.2759,
-    lng: 127.0442,
-  },
-  {
-    title: "예일고시원",
-    lat: 37.2779,
-    lng: 127.0427,
-  },
-];
+import { useMutation, useQuery } from "react-query";
 
 export default function Here() {
   const navigate = useNavigate();
   const Info = useLocation();
-  console.log(Info);
   const [userInfo, setUserInfo] = useState();
+  const { isLoading, data } = useQuery("here");
+
+  if (isLoading) {
+    console.log(isLoading);
+  }
 
   const getData = async () => {
     await axios
@@ -59,7 +46,6 @@ export default function Here() {
 
       //markerdata 대신 서버에서 받아온 데이터로 대체
       props.forEach((el) => {
-        console.log(el);
         new kakao.maps.Marker({
           map: map,
           position: new kakao.maps.LatLng(el.u_y, el.u_x),
@@ -69,16 +55,16 @@ export default function Here() {
 
       let imageSrc = "https://cdn-icons-png.flaticon.com/512/929/929426.png", // 마커이미지의 주소
         imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기
-        imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션, 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+        imageOption = { offset: new kakao.maps.Point(27, 69) };
 
       let markerImage = new kakao.maps.MarkerImage(
           imageSrc,
           imageSize,
           imageOption
         ),
-        markerPosition = new kakao.maps.LatLng(37.2775, 127.0438666666667); // 마커가 표시될 위치
+        markerPosition = new kakao.maps.LatLng(data.y, data.x); // 마커가 표시될 위치
 
-      // 이미지 마커 생성
+      //이미지 마커 생성
       let marker = new kakao.maps.Marker({
         position: markerPosition,
         image: markerImage, // 마커이미지 설정
@@ -96,22 +82,13 @@ export default function Here() {
         "  </a>" +
         "</div>";
 
-      // 커스텀 오버레이가 표시될 위치 ==> 나눔 위치
-      if (Info.state.location) {
-        console.log(Info.state.location);
-        let position = new kakao.maps.LatLng(
-          Info.state.location.y,
-          Info.state.location.x
-        );
-
-        // 커스텀 오버레이 생성
-        new kakao.maps.CustomOverlay({
-          map: map,
-          position: position,
-          content: content,
-          yAnchor: 1,
-        });
-      }
+      // 커스텀 오버레이 생성
+      new kakao.maps.CustomOverlay({
+        map: map,
+        position: markerPosition,
+        content: content,
+        yAnchor: 1,
+      });
     });
   };
   useEffect(() => {

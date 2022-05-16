@@ -24,6 +24,8 @@ const SearchContainer = styled(BoxCotainer)`
 const SearchList = styled.div`
   margin: 0;
   display: flex;
+  max-height: 200px;
+  overflow: scroll;
   flex-direction: column;
   align-items: center;
   align-content: flex-start;

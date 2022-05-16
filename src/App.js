@@ -11,9 +11,8 @@ import MyMap from "./pages/MyMap";
 import Neighbor from "./pages/Neighbor";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { RecoilRoot } from "recoil";
-import { QueryClient, QueryClientProvider } from "react-query";
-
-const queryClient = new QueryClient();
+import { QueryClientProvider } from "react-query";
+import queryClient from "./services/mutation";
 
 function App() {
   return (
