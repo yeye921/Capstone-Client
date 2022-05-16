@@ -101,8 +101,9 @@ const LoginViewer = () => {
         </InputContainer>
         <ButtonContainer1>
           <MainButton
-            color="rgb(73, 69, 64)"
-            background="rgb(250, 224, 82)"
+            // color="rgb(73, 69, 64)"
+            color="white"
+            background="rgb(247, 217, 86)"
             type="submit"
             text="로그인"
           />
@@ -110,7 +111,8 @@ const LoginViewer = () => {
         <ButtonContainer2>
           <Link to="/signup">
             <MainButton
-              color="rgb(73, 69, 64)"
+              // color="rgb(73, 69, 64)"
+              color="white"
               background="rgb(104, 193, 251)"
               text="회원가입"
             />

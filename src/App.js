@@ -31,8 +31,9 @@ function App() {
             <Route path="/chat" element={<Chat />} />
             <Route path="/mymap" element={<MyMap />} />
             <Route path="/neighbor" element={<Neighbor />} />
-
+            {/* <Route path="/test" element={<ChatTest />} /> */}
             <Route path="/" element={<Logo />} />
+
           </Routes>
         </Router>
       </QueryClientProvider>

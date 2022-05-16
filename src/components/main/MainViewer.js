@@ -18,7 +18,13 @@ import { useRecoilState } from "recoil";
 
 const MainViewer = () => {
   const [roadAddr, setRoadAddr] = useRecoilState(roadAddrState);
-  // const location = '원천동';
+  let text = "";
+
+  if (roadAddr.length > 21) {
+    text = roadAddr.substr(0, 21);
+  } else {
+    text = roadAddr;
+  }
 
   const navigate = useNavigate();
   const onClick = () => {
@@ -29,7 +35,7 @@ const MainViewer = () => {
   return (
     <div style={{ overflow: "scroll" }}>
       {/* 카테고리 탭 상단 공통부분 */}
-      <MainHeader text={roadAddr} />
+      <MainHeader text={text} />
 
       {/* 카테고리 탭 */}
       <CategoryTab />

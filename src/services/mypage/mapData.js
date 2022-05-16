@@ -10,7 +10,7 @@ export const mapData = async (input, roadAddr, lotAddr, x, y) => {
     const response = await axios.post(
       BASE_URL,
       {
-        u_id: 1,
+        // u_id: 1,
         pl_name: input,
         x: x,
         y: y,

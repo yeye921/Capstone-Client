@@ -43,8 +43,8 @@ export default function Neighbor() {
           let locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성
             message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용
 
-          setX(locPosition.getLat());
-          setY(locPosition.getLng());
+          setX(locPosition.getLng());
+          setY(locPosition.getLat());
 
           // 마커 좌표 - 위치 변환
           searchDetailAddrFromCoords(locPosition, function (result, status) {
