@@ -2,7 +2,7 @@ import axios from "axios";
 
 const POST_BASE_URL = "http://3.39.125.17/post";
 
-export const menuData = async (postId, inputData, uId) => {
+export const menuData = async (uId, postId, inputData) => {
   const headers = {
     "Access-Control-Allow-Origin": "*",
   };

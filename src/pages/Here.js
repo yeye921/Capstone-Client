@@ -9,12 +9,16 @@ import Header from "../components/common/Header";
 import axios from "axios";
 import { getLocationData } from "../services/chat";
 import { useMutation, useQuery } from "react-query";
+import { useRecoilState } from "recoil";
+import { xState, yState } from "../state";
 
 export default function Here() {
   const navigate = useNavigate();
   const Info = useLocation();
   const [userInfo, setUserInfo] = useState();
   const { isLoading, data } = useQuery("here");
+  const [x, setX] = useRecoilState(xState);
+  const [y, setY] = useRecoilState(yState);
 
   if (isLoading) {
     console.log(isLoading);
@@ -38,7 +42,7 @@ export default function Here() {
       let container = document.getElementById("map");
       let options = {
         //사용자 uId 위치로 중심 위치 설정
-        center: new kakao.maps.LatLng(37.2775, 127.0438666666667),
+        center: new kakao.maps.LatLng(y, x),
         level: 3,
       };
       //map
