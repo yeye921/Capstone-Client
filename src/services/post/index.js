@@ -2,7 +2,7 @@ import axios from "axios";
 
 const POST_BASE_URL = "http://3.39.125.17/post";
 
-export const postData = async (inputData, postTime) => {
+export const postData = async (inputData, postTime, uId) => {
   const headers = {
     "Access-Control-Allow-Origin": "*",
   };
@@ -15,11 +15,11 @@ export const postData = async (inputData, postTime) => {
         post_time: postTime,
         shooting_user: null,
         p_location: "null",
-        u_id: 1,
+        u_id: uId,
         r_id: inputData.restaurant,
       },
       { headers: headers },
-      { withCredentials: false }
+      { withCredentials: false },
     );
     return response;
   } catch (error) {

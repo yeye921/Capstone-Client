@@ -4,8 +4,12 @@ import MenuModal from "../../menu/MenuModal";
 import Search from "./PostSearch";
 import RestSearch from "./RestSearch";
 import { PostContainer, BoxCotainer, PostButton, InputBox } from "./styles";
+import { idState } from "../../../state";
+import { useRecoilState } from "recoil";
 
 const PostInput = () => {
+  const [uId, setuId] = useRecoilState(idState);
+
   const [inputs, setInputs] = useState({
     title: "",
     orderTime: "",
@@ -32,7 +36,7 @@ const PostInput = () => {
 
   const onPublish = () => {
     const time = new Date().toISOString();
-    postData(inputs, time).then((data) => {
+    postData(inputs, time, uId).then((data) => {
       return setOpenModal({
         postId: data.data.p_id,
         isOpen: true,

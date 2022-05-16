@@ -30,16 +30,10 @@
   white-space: nowrap;
 }
 .box {
+  height: 8vh;
   display: flex;
-  /* justify-content: center; */
-  /* align-items: center; */
-
-  padding-top: 0.4rem;
-  padding-left: 4rem;
-
-  /* height: 7vh; */
-  /* background-color: blue; */
-  /* padding-bottom: 0.4rem;*/
+  justify-content: center;
+  align-items: center;
 }
 
 /* mymap & neighbor 공통 */

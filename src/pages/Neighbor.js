@@ -1,33 +1,33 @@
 // 동네 인증 페이지
 /*global kakao */
-import React, { useEffect, useState } from 'react';
-import './MyMap.css';
-import Button from '@mui/material/Button';
-import { useNavigate } from 'react-router-dom';
-import { authData } from '../services/Neighbor/authData';
+import React, { useEffect, useState } from "react";
+import "./MyMap.css";
+import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
+import { authData } from "../services/Neighbor/authData";
+import { idState } from "../state";
+import { useRecoilState } from "recoil";
 
 export default function Neighbor() {
-  let uId = 1; // 로그인 할 때 받은 아이디
-  // let roadAddr = ''; // 도로명 주소
-  // let lotAddr = ''; // 지번 주소
-  // let x = 0.0;
-  // let y = 0.0;
-  let [roadAddr, setRoadAddr] = useState('');
-  let [lotAddr, setLotAddr] = useState('');
+  // let uId = 1;
+  const [uId] = useRecoilState(idState); // 회원가입 할 때 받은 아이디
+
+  let [roadAddr, setRoadAddr] = useState("");
+  let [lotAddr, setLotAddr] = useState("");
   let [x, setX] = useState(0);
   let [y, setY] = useState(0);
   const navigate = useNavigate();
 
   const mapscript = () => {
     kakao.maps.load(() => {
-      let container = document.getElementById('map');
+      let container = document.getElementById("map");
       let options = {
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
         level: 4, // 지도의 확대 레벨
       };
 
       const map = new kakao.maps.Map(container, options);
-      map.setDraggable(false); // 지도 드래그 이동 막기
+      // map.setDraggable(false); // 지도 드래그 이동 막기
       map.setZoomable(false); // 지도 확대 축소 막기
 
       // 좌표-주소 변환 객체 생성
@@ -52,7 +52,7 @@ export default function Neighbor() {
               setRoadAddr(
                 !!result[0].road_address
                   ? result[0].road_address.address_name
-                  : ''
+                  : "",
               );
               setLotAddr(result[0].address.address_name);
             }
@@ -65,7 +65,7 @@ export default function Neighbor() {
         // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정
 
         let locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
-          message = 'geolocation을 사용할수 없어요..';
+          message = "geolocation을 사용할수 없어요..";
 
         displayMarker(locPosition, message);
       }
@@ -82,7 +82,7 @@ export default function Neighbor() {
         let iwContent = message, // 인포윈도우에 표시할 내용
           iwRemoveable = true;
 
-        // 인포윈도우를 생성합니다
+        // 인포윈도우를 생성
         let infowindow = new kakao.maps.InfoWindow({
           content: iwContent,
           removable: iwRemoveable,
@@ -95,7 +95,7 @@ export default function Neighbor() {
         map.setCenter(locPosition);
 
         // 마커 클릭 이벤트 처리
-        kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
+        kakao.maps.event.addListener(map, "click", function (mouseEvent) {
           let latlng = mouseEvent.latLng;
           marker.setPosition(latlng);
 
@@ -106,7 +106,7 @@ export default function Neighbor() {
               setRoadAddr(
                 !!result[0].road_address
                   ? result[0].road_address.address_name
-                  : ''
+                  : "",
               );
               setLotAddr(result[0].address.address_name);
             }
@@ -114,7 +114,7 @@ export default function Neighbor() {
         });
 
         // 마커 드래그 이벤트 처리
-        kakao.maps.event.addListener(marker, 'dragend', function () {
+        kakao.maps.event.addListener(marker, "dragend", function () {
           setX(marker.getPosition().La); // 위도
           setY(marker.getPosition().Ma); // 경도
           //   console.log('dragend', x, y);
@@ -127,11 +127,11 @@ export default function Neighbor() {
                 setRoadAddr(
                   !!result[0].road_address
                     ? result[0].road_address.address_name
-                    : ''
+                    : "",
                 );
                 setLotAddr(result[0].address.address_name);
               }
-            }
+            },
           );
         });
       }
@@ -146,35 +146,36 @@ export default function Neighbor() {
   }, []);
   const buttonClick = () => {
     authData(uId, x, y, roadAddr, lotAddr);
-    console.log('버튼클릭', uId, x, y, roadAddr, lotAddr);
+    console.log("버튼클릭", uId, x, y, roadAddr, lotAddr);
+    navigate("/login");
   };
   return (
     <div>
-      <div className='header'>
-        <div className='text'>현재 사는 동네가 이곳이 맞나요?</div>
+      <div className="header">
+        <div className="text">현재 사는 동네가 이곳이 맞나요?</div>
       </div>
 
-      <div id='map' style={{ width: '100vw', height: '76vh' }}></div>
+      <div id="map" style={{ width: "100vw", height: "76vh" }}></div>
 
-      <div className='bottom'>
-        <div className='guide'>마커를 움직여 위치를 조정하세요</div>
-        <div className='addr'>{lotAddr}</div>
-        <div className='button'>
+      <div className="bottom">
+        <div className="guide">마커를 움직여 위치를 조정하세요</div>
+        <div className="addr">{lotAddr}</div>
+        <div className="button">
           <Button
-            variant='contained'
-            type='submit'
+            variant="contained"
+            type="submit"
             onClick={buttonClick}
             style={{
               borderRadius: 15,
-              backgroundColor: 'rgb(247, 217, 86)', // 노란색
+              backgroundColor: "rgb(247, 217, 86)", // 노란색
               // backgroundColor: 'rgb(104, 193, 251)',
-              fontWeight: 'bold',
-              fontSize: '15px',
-              color: 'white',
+              fontWeight: "bold",
+              fontSize: "15px",
+              color: "white",
             }}
           >
             {/* 클릭한 위치로 설정 */}
-            Yes {'>'}
+            Yes {">"}
           </Button>
         </div>
       </div>

@@ -1,22 +1,42 @@
-import { React, useState } from 'react';
-import { Link } from 'react-router-dom';
-import MainButton from '../common/MainButton';
+import { React, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import MainButton from "../common/MainButton";
 import {
   Input,
   InputContainer,
   ButtonContainer1,
   ButtonContainer2,
-} from './LoginStyle';
-import { loginData } from '../../services/login/loginData';
-import { idState } from '../../state';
-import { useRecoilState } from 'recoil';
-import { useNavigate } from 'react-router-dom';
+} from "./LoginStyle";
+import { loginData } from "../../services/login/loginData";
+import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import {
+  idState,
+  addrState,
+  roadAddrState,
+  xState,
+  yState,
+  bankState,
+  accountState,
+  nameState,
+  pointState,
+} from "../../state";
 
 const LoginViewer = () => {
+  // recoil에 저장할 변수들..
   const [uId, setuId] = useRecoilState(idState);
+  const [addr, setAddr] = useRecoilState(addrState);
+  const [roadAddr, setRoadAddr] = useRecoilState(roadAddrState);
+  const [x, setX] = useRecoilState(xState);
+  const [y, setY] = useRecoilState(yState);
+  const [bank, setBank] = useRecoilState(bankState);
+  const [account, setAccount] = useRecoilState(accountState);
+  const [name, setName] = useRecoilState(nameState);
+  const [point, setPoint] = useRecoilState(pointState);
+
   const [inputs, setInputs] = useState({
-    id: '',
-    pw: '',
+    id: "",
+    pw: "",
   });
 
   const { id, pw } = inputs;
@@ -34,18 +54,29 @@ const LoginViewer = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     // 입력한 정보와 일치하는 데이터가 있으면 로그인시킴
-    console.log(inputs);
-    if (loginData(inputs) === true) {
-      setuId(inputs.id); // for recoil
-      // alert('로그인이 완료되었습니다.');
-      navigate('/main');
-    } else {
-      alert('일치하는 회원 정보가 없습니다.');
-    }
+
+    loginData(inputs).then((result) => {
+      if (result === "") {
+        alert("일치하는 회원 정보가 없습니다.");
+      } else {
+        // 받아온 데이터 recoil에 저장함
+        setuId(result.u_id);
+        setAddr(result.address);
+        setRoadAddr(result.road_address);
+        setX(result.u_x);
+        setY(result.u_y);
+        setBank(result.bank);
+        setAccount(result.account);
+        setName(result.name);
+        setPoint(result.point);
+
+        alert("로그인이 완료되었습니다.");
+        navigate("/main");
+      }
+    });
   };
   return (
     <>
-      <div>uid{uId}</div>
       <form onSubmit={onSubmit}>
         <InputContainer>
           <Input
