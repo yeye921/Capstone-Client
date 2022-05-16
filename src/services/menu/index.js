@@ -17,7 +17,7 @@ export const menuData = async (postId, inputData, uId) => {
         request: inputData.request,
       },
       { headers: headers },
-      { withCredentials: false },
+      { withCredentials: false }
     );
   } catch (error) {
     console.error(error);
