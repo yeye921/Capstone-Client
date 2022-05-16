@@ -1,4 +1,5 @@
 import "./App.css";
+import Logo from "./pages/Logo";
 import Post from "./pages/Post";
 import Main from "./pages/Main";
 import Menu from "./pages/Menu";
@@ -31,6 +32,8 @@ function App() {
             <Route path="/mymap" element={<MyMap />} />
             <Route path="/neighbor" element={<Neighbor />} />
             {/* <Route path="/test" element={<ChatTest />} /> */}
+            <Route path="/" element={<Logo />} />
+
           </Routes>
         </Router>
       </QueryClientProvider>
