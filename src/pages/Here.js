@@ -29,6 +29,7 @@ export default function Here() {
       .get(`http://3.39.125.17/chat?pId=${Info.state.pId}`)
       .then((data) => {
         let users = data.data;
+        console.log(users);
         if (users.length === 0) {
           setUserInfo(users);
         }

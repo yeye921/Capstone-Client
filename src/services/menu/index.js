@@ -19,6 +19,7 @@ export const menuData = async (uId, postId, inputData) => {
       { headers: headers },
       { withCredentials: false }
     );
+    return response.data;
   } catch (error) {
     console.error(error);
   }

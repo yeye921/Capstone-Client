@@ -13,11 +13,18 @@ import { useHere } from "../../services/mutation";
 import NoticeBar from "../../components/chat/NoticeBar";
 import { useRecoilState } from "recoil";
 import { roadAddrState } from "../../state";
+import styled from "styled-components";
+
+const ButtonContainer = styled.div`
+  display: flex;
+  height: 3em;
+  justify-content: center;
+`;
 
 const ChatContainer = ({ state }) => {
   const [color, setColor] = useState("success"); // 버튼 클릭 시 색상 변경
   const [disable, setDisable] = useState(false); // 버튼 클릭 시 disable처리
-  const [fee, setFee] = useState(500); // 채팅방 상단 배달비
+  const [fee, setFee] = useState(state.fee); // 채팅방 상단 배달비
   const [addr, setAddr] = useState(""); // 채팅방 상단 나눔 위치
   const [location, setLocation] = useState("");
 
@@ -48,9 +55,12 @@ const ChatContainer = ({ state }) => {
   const onShooting = (e) => {
     setDisable(true);
     setColor("disabled");
-    console.log(uId, state.pId);
-    ssondaData(uId, state.pId);
-    setFee(0);
+    ssondaData(uId, state.pId).then((response) => {
+      console.log(response);
+      if (uId == response.data.uId) {
+        setFee(response.data.total_fee.total_fee);
+      }
+    });
     setAddr(roadAddr);
 
     // navigate('/login');
@@ -61,41 +71,46 @@ const ChatContainer = ({ state }) => {
       state: {
         pId: state.pId,
         title: state.title,
-        location: location,
+        location: data.place_name,
       },
     });
   };
 
-  //   //useEffect 추가
-  //   useEffect(() => {
-  //     //렌더링 시, local storage에서 버튼, 나눔위치 정보 받아오기
-  //     const isClose = localStorage.getItem("isClose");
+  //useEffect 추가
+  useEffect(() => {
+    //렌더링 시, local storage에서 버튼, 나눔위치 정보 받아오기
+    const isClose = localStorage.getItem("isClose");
 
-  //     if (isClose) {
-  //       //버튼 비활성화 유지 테스트 -> 나중에 리덕스로도 바꿀 수 있는듯
-  //       //const target = document.getElementById("closeBtn");
-  //       //target.disabled = true;
-  //     }
-  //   }, []);
+    if (isClose) {
+      //버튼 비활성화 유지 테스트 -> 나중에 리덕스로도 바꿀 수 있는듯
+      //const target = document.getElementById("closeBtn");
+      //target.disabled = true;
+    }
+  }, [fee]);
 
   return (
     <>
-      {data && <Topbar location={data.place_name} />}
+      {/* {here.isLoading && <LoadingText>isLoading</LoadingText>} */}
+      {here.isLoading ? (
+        <Topbar location={"isLoading"} />
+      ) : (
+        data && <Topbar location={data.place_name} />
+      )}
       <NoticeBar fee={fee} addr={addr} />
-
-      <Button id="closeBtn" onClick={onClosing}>
-        모집마감
-      </Button>
-      <IconButton onClick={onShooting} disabled={disable}>
-        <MonetizationOnIcon
-          color={color}
-          sx={{
-            fontSize: 50,
-          }}
-        />
-      </IconButton>
-      <Button onClick={onMap}>지도</Button>
-      <div>uid: {uId}</div>
+      <ButtonContainer>
+        <Button id="closeBtn" onClick={onClosing}>
+          모집마감
+        </Button>
+        <IconButton onClick={onShooting} disabled={disable}>
+          <MonetizationOnIcon
+            color={color}
+            sx={{
+              fontSize: 50,
+            }}
+          />
+        </IconButton>
+        <Button onClick={onMap}>지도</Button>
+      </ButtonContainer>
     </>
   );
 };
