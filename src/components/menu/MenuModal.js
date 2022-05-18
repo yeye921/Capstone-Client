@@ -28,15 +28,17 @@ const MenuModal = ({ openModal, setOpenModal, closeModal, title }) => {
   };
 
   const onPublish = () => {
-    menuData(uId, openModal.postId, inputs);
-    closeModal();
-
-    //채팅페이지로 이동
-    navigate(`/chat?pId=${openModal.postId}`, {
-      state: {
-        pId: openModal.postId,
-        title: title,
-      },
+    menuData(uId, openModal.postId, inputs).then((response) => {
+      console.log(response);
+      closeModal();
+      //채팅페이지로 이동
+      navigate(`/chat?pId=${openModal.postId}`, {
+        state: {
+          pId: openModal.postId,
+          title: title,
+          fee: response.fee,
+        },
+      });
     });
   };
 

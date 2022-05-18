@@ -4,14 +4,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 const LogoImg = styled.img`
-  width: 50vw;
-`;
-
-const LogoState = styled.div`
-  margin-top: 3vh;
-  font-weight: 800;
-  font-size: 40px;
-  color: #0080ff;
+  width: 70vw;
 `;
 
 const Box = styled.div`
@@ -30,7 +23,6 @@ const Logo = () => {
     <>
       <Box>
         <LogoImg src={logo} onClick={onClick} />
-        <LogoState>삼삼오오</LogoState>
       </Box>
     </>
   );
