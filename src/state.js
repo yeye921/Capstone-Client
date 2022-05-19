@@ -69,5 +69,9 @@ export const pointState = atom({
 export const buttonState = atom({
   key: "buttonState",
   default: {},
-  effects_UNSTABLE: [persistAtom],
+});
+
+export const postState = atom({
+  key: "postState",
+  default: {},
 });
