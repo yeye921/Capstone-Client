@@ -4,7 +4,6 @@ import { ssondaData } from "../../services/chat";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import IconButton from "@mui/material/IconButton";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { idState } from "../../state";
 import { useNavigate } from "react-router-dom";
 import Topbar from "../../components/chat/Topbar";
 import { QueryClient, useMutation, useQuery } from "react-query";
@@ -12,7 +11,7 @@ import axios from "axios";
 import { useHere } from "../../services/mutation";
 import NoticeBar from "../../components/chat/NoticeBar";
 import { useRecoilState } from "recoil";
-import { roadAddrState, buttonState, postState } from "../../state";
+import { idState, roadAddrState, buttonState, postState } from "../../state";
 import styled from "styled-components";
 
 import ChatContent from "../../components/chat/firebase/ChatContent";
@@ -28,6 +27,7 @@ const ChatContainer = ({ state }) => {
   const [fee, setFee] = useState(state.fee); // 채팅방 상단 배달비
   const [buttons, setButtons] = useRecoilState(buttonState);
   const [uId, setuId] = useRecoilState(idState);
+
 
   const [postInfo, setPostInfo] = useRecoilState(postState);
   //fee, location, buttons
@@ -112,6 +112,8 @@ const ChatContainer = ({ state }) => {
         fee={fee}
         addr={postInfo[state.pId] ? postInfo[state.pId].location : "isLoading"}
       />
+
+      <ChatContent />
       <ButtonContainer>
         <Button
           id="closeBtn"
