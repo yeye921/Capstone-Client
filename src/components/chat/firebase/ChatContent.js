@@ -12,7 +12,7 @@ const Msgs = styled.div`
   margin-bottom: 5rem;
   // display:flex;
   // flex-direction: column;
-  // height: 100%;
+  // height: 20rem;
 `;
 
 const ChatContent = () => {
