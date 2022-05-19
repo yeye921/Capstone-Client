@@ -50,13 +50,6 @@ const ChatContainer = ({ state }) => {
   }
 
   const onClosing = (e) => {
-    // setButtons({
-    //   ...buttons,
-    //   [state.pId]: {
-    //     ...buttons[state.pId],
-    //     isClosing: true,
-    //   },
-    // });
     setPostInfo({
       ...postInfo,
       [state.pId]: {
@@ -68,13 +61,6 @@ const ChatContainer = ({ state }) => {
   };
 
   const onShooting = (e) => {
-    // setButtons({
-    //   ...buttons,
-    //   [state.pId]: {
-    //     ...buttons[state.pId],
-    //     isShooting: true,
-    //   },
-    // });
     ssondaData(uId, state.pId).then((response) => {
       let fee = 0;
       if (uId == response.data.uId) {
@@ -118,10 +104,6 @@ const ChatContainer = ({ state }) => {
 
     console.log(postInfo);
   }, [data]);
-
-  //   useEffect(() => {
-  //     console.log(fee);
-  //   }, [fee]);
 
   return (
     <div>

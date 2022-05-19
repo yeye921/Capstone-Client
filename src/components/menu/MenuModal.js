@@ -36,8 +36,7 @@ const MenuModal = ({ openModal, setOpenModal, closeModal, title }) => {
         state: {
           pId: openModal.postId,
           title: title,
-          // fee: response.fee,
-          fee: "500",
+          fee: response.fee,
         },
       });
     });
