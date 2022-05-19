@@ -18,9 +18,14 @@ import ChatContent from "../../components/chat/firebase/ChatContent";
 import ChatInput from "../../components/chat/firebase/ChatInput";
 
 const ButtonContainer = styled.div`
-  display: flex;
-  height: 3em;
-  justify-content: center;
+  display: grid;
+  justify-content: start;
+
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1.25fr;
 `;
 
 const ChatContainer = ({ state }) => {
@@ -34,11 +39,10 @@ const ChatContainer = ({ state }) => {
 
   const navigate = useNavigate();
   // buttonState[pid].모집마감 = true;
-
+  console.log(state.pId);
   //const { pId } = queryString.parse(state);
   const here = useHere("here", "http://3.39.125.17/chat");
   const { data } = useQuery("here");
-
   if (data) {
     // setPostInfo({
     //   ...postInfo,
@@ -92,24 +96,22 @@ const ChatContainer = ({ state }) => {
   //useEffect 추가
   useEffect(() => {
     //초기화 코드
-    // setPostInfo({
-    //   ...buttons,
-    //   [state.pId]: {
-    //     fee: state.fee,
-    //     location: data ? data.place_name : null,
-    //     isClosing: false,
-    //     isShooting: false,
-    //   },
-    // });
-
-    console.log(postInfo);
+    setPostInfo({
+      ...postInfo,
+      [state.pId]: {
+        ...postInfo[state.pId],
+        fee: state.fee,
+        location: data ? data.place_name : null,
+      },
+    });
+    console.log(postInfo[state.pId]);
   }, [data]);
 
   return (
     <div>
       {/* {here.isLoading && <LoadingText>isLoading</LoadingText>} */}
       <NoticeBar
-        fee={fee}
+        fee={postInfo[state.pId] ? postInfo[state.pId].fee : "isLoading"}
         addr={postInfo[state.pId] ? postInfo[state.pId].location : "isLoading"}
       />
 
@@ -135,9 +137,8 @@ const ChatContainer = ({ state }) => {
           />
         </IconButton>
         <Button onClick={onMap}>지도</Button>
+        <ChatInput />
       </ButtonContainer>
-
-      <ChatInput />
     </div>
   );
 };
