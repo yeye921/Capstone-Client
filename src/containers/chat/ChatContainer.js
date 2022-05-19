@@ -12,7 +12,7 @@ import axios from "axios";
 import { useHere } from "../../services/mutation";
 import NoticeBar from "../../components/chat/NoticeBar";
 import { useRecoilState } from "recoil";
-import { roadAddrState } from "../../state";
+import { roadAddrState, buttonState } from "../../state";
 import styled from "styled-components";
 
 const ButtonContainer = styled.div`
@@ -22,29 +22,30 @@ const ButtonContainer = styled.div`
 `;
 
 const ChatContainer = ({ state }) => {
-  const [color, setColor] = useState("success"); // 버튼 클릭 시 색상 변경
-  const [disable, setDisable] = useState(false); // 버튼 클릭 시 disable처리
   const [fee, setFee] = useState(state.fee); // 채팅방 상단 배달비
-  const [addr, setAddr] = useState(""); // 채팅방 상단 나눔 위치
-  const [location, setLocation] = useState("");
-
+  const [buttons, setButtons] = useRecoilState(buttonState);
   // recoil에 저장된 변수들
   const [uId, setuId] = useRecoilState(idState);
-  const [roadAddr, setRoadAddr] = useRecoilState(roadAddrState);
 
   const navigate = useNavigate();
+  // buttonState[pid].모집마감 = true;
 
   //const { pId } = queryString.parse(state);
   const here = useHere("here", "http://3.39.125.17/chat");
-  const { isLoading, data } = useQuery("here");
+  const { data } = useQuery("here");
 
   if (here.isLoading) {
     console.log(here.isLoading);
   }
 
   const onClosing = (e) => {
-    e.target.disabled = !e.target.disabled;
-    localStorage.setItem("isClose", true);
+    setButtons({
+      ...buttons,
+      [state.pId]: {
+        ...buttons[state.pId],
+        isClosing: true,
+      },
+    });
     // finishData(state.pId).then((data) => {
     //   setLocation(data.data);
     //   localStorage.setItem("pLocation", data.data);
@@ -53,16 +54,18 @@ const ChatContainer = ({ state }) => {
   };
 
   const onShooting = (e) => {
-    setDisable(true);
-    setColor("disabled");
+    setButtons({
+      ...buttons,
+      [state.pId]: {
+        ...buttons[state.pId],
+        isShooting: true,
+      },
+    });
     ssondaData(uId, state.pId).then((response) => {
-      console.log(response);
       if (uId == response.data.uId) {
-        setFee(response.data.total_fee.total_fee);
+        setFee(response.data.total_fee);
       }
     });
-    setAddr(roadAddr);
-
     // navigate('/login');
   };
 
@@ -71,39 +74,43 @@ const ChatContainer = ({ state }) => {
       state: {
         pId: state.pId,
         title: state.title,
-        location: data.place_name,
       },
     });
   };
 
   //useEffect 추가
   useEffect(() => {
-    //렌더링 시, local storage에서 버튼, 나눔위치 정보 받아오기
-    const isClose = localStorage.getItem("isClose");
+    //테스트용
+    setButtons({
+      ...buttons,
+      [state.pId]: {
+        isClosing: false,
+        isShooting: false,
+      },
+    });
+  }, []);
 
-    if (isClose) {
-      //버튼 비활성화 유지 테스트 -> 나중에 리덕스로도 바꿀 수 있는듯
-      //const target = document.getElementById("closeBtn");
-      //target.disabled = true;
-    }
+  useEffect(() => {
+    console.log(fee);
   }, [fee]);
 
   return (
     <>
       {/* {here.isLoading && <LoadingText>isLoading</LoadingText>} */}
-      {here.isLoading ? (
-        <Topbar location={"isLoading"} />
-      ) : (
-        data && <Topbar location={data.place_name} />
-      )}
-      <NoticeBar fee={fee} addr={addr} />
+      <NoticeBar fee={fee} addr={data && data.place_name} />
       <ButtonContainer>
-        <Button id="closeBtn" onClick={onClosing}>
+        <Button
+          id="closeBtn"
+          onClick={onClosing}
+          disabled={buttons[state.pId] ? buttons[state.pId].isClosing : false}
+        >
           모집마감
         </Button>
-        <IconButton onClick={onShooting} disabled={disable}>
+        <IconButton
+          onClick={onShooting}
+          disabled={buttons[state.pId] ? buttons[state.pId].isShooting : false}
+        >
           <MonetizationOnIcon
-            color={color}
             sx={{
               fontSize: 50,
             }}
