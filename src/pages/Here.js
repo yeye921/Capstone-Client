@@ -40,10 +40,12 @@ export default function Here() {
   // props로 참여자들 위치 받아와야 함
   const mapscript = (props) => {
     kakao.maps.load(() => {
+      let Y = data ? data.y : y;
+      let X = data ? data.x : x;
+      console.log(data);
       let container = document.getElementById("map");
       let options = {
-        //사용자 uId 위치로 중심 위치 설정
-        center: new kakao.maps.LatLng(y, x),
+        center: new kakao.maps.LatLng(Y, X),
         level: 3,
       };
       //map
@@ -58,42 +60,44 @@ export default function Here() {
         });
       });
 
-      let imageSrc = "https://cdn-icons-png.flaticon.com/512/929/929426.png", // 마커이미지의 주소
-        imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기
-        imageOption = { offset: new kakao.maps.Point(27, 69) };
+      if (data) {
+        let imageSrc = "https://cdn-icons-png.flaticon.com/512/929/929426.png", // 마커이미지의 주소
+          imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기
+          imageOption = { offset: new kakao.maps.Point(27, 69) };
 
-      let markerImage = new kakao.maps.MarkerImage(
-          imageSrc,
-          imageSize,
-          imageOption
-        ),
-        markerPosition = new kakao.maps.LatLng(data.y, data.x); // 마커가 표시될 위치
+        let markerImage = new kakao.maps.MarkerImage(
+            imageSrc,
+            imageSize,
+            imageOption
+          ),
+          markerPosition = new kakao.maps.LatLng(data.y, data.x); // 마커가 표시될 위치
 
-      //이미지 마커 생성
-      let marker = new kakao.maps.Marker({
-        position: markerPosition,
-        image: markerImage, // 마커이미지 설정
-      });
+        //이미지 마커 생성
+        let marker = new kakao.maps.Marker({
+          position: markerPosition,
+          image: markerImage, // 마커이미지 설정
+        });
 
-      // 마커가 지도 위에 표시되도록 설정
-      marker.setMap(map);
+        // 마커가 지도 위에 표시되도록 설정
+        marker.setMap(map);
 
-      // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-      let content =
-        '<div class="customoverlay">' +
-        '  <a href="https://map.kakao.com/link/map/11394059" target="_blank">' + // for 링크
-        // `   <span class="title">${here}</span>` +
-        `   <span class="title">여기서 모여!</span>` +
-        "  </a>" +
-        "</div>";
+        // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+        let content =
+          '<div class="customoverlay">' +
+          '  <a href="https://map.kakao.com/link/map/11394059" target="_blank">' + // for 링크
+          // `   <span class="title">${here}</span>` +
+          `   <span class="title">여기서 모여!</span>` +
+          "  </a>" +
+          "</div>";
 
-      // 커스텀 오버레이 생성
-      new kakao.maps.CustomOverlay({
-        map: map,
-        position: markerPosition,
-        content: content,
-        yAnchor: 1,
-      });
+        // 커스텀 오버레이 생성
+        new kakao.maps.CustomOverlay({
+          map: map,
+          position: markerPosition,
+          content: content,
+          yAnchor: 1,
+        });
+      }
     });
   };
   useEffect(() => {
