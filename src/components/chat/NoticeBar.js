@@ -2,33 +2,41 @@ import React from "react";
 import styled from "styled-components";
 
 const Content = styled.div`
-  //   background-color: rgba(221, 220, 220, 0.8);
-  background-color: rgba(230, 228, 228, 0.8);
+  background-color: white;
   margin-top: 0.3rem;
   width: 20.5rem;
   height: 3.3rem;
   border-radius: 0.5rem;
   padding-left: 1.5rem;
-
-  padding-top: 0.5rem;
+  // padding-top: 0.5rem;
+  padding-top: 0.8rem;
 `;
 const Text = styled.div`
-  font-size: 14px;
+  // color: white;
+  font-size: 16px;
+  font-weight: bold;
   margin-bottom: 0.2rem;
 `;
 const Location = styled.div`
-  font-size: 14px;
-  color: blue;
+  font-size: 15px;
+  font-weight: bold;
+  color: navy;
   text-decoration: underline;
   margin-left: 0.4rem;
 `;
 const Div = styled.div`
   display: flex;
 `;
+const Container = styled.div`
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+
 const NoticeBar = (props) => {
   const { fee, addr } = props;
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <Container>
       <Content>
         <Text>현재 나의 배달비: {fee}원</Text>
         <Div>
@@ -36,7 +44,7 @@ const NoticeBar = (props) => {
           <Location>{addr}</Location>
         </Div>
       </Content>
-    </div>
+    </Container>
   );
 };
 export default NoticeBar;

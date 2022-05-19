@@ -2,7 +2,7 @@ import { atom } from "recoil";
 import { recoilPersist } from "recoil-persist";
 const { persistAtom } = recoilPersist();
 
-// recoil로 관리할 변수들..
+// recoil로 관리할 변수들
 // uId
 export const idState = atom({
   key: "idState",
@@ -69,5 +69,19 @@ export const pointState = atom({
 export const buttonState = atom({
   key: "buttonState",
   default: {},
+  effects_UNSTABLE: [persistAtom],
+});
+
+// 게시글 아이디
+export const pidState = atom({
+  key: "pidState",
+  default: "",
+  effects_UNSTABLE: [persistAtom],
+});
+
+// 게시글 배달비
+export const feeState = atom({
+  key: "feeState",
+  default: "",
   effects_UNSTABLE: [persistAtom],
 });

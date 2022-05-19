@@ -15,6 +15,9 @@ import { useRecoilState } from "recoil";
 import { roadAddrState, buttonState } from "../../state";
 import styled from "styled-components";
 
+import ChatContent from "../../components/chat/firebase/ChatContent";
+import ChatInput from "../../components/chat/firebase/ChatInput";
+
 const ButtonContainer = styled.div`
   display: flex;
   height: 3em;
@@ -90,14 +93,17 @@ const ChatContainer = ({ state }) => {
     });
   }, []);
 
-  useEffect(() => {
-    console.log(fee);
-  }, [fee]);
+  // useEffect(() => {
+  //   console.log(fee);
+  // }, [fee]);
 
   return (
-    <>
+    <div>
+
       {/* {here.isLoading && <LoadingText>isLoading</LoadingText>} */}
       <NoticeBar fee={fee} addr={data && data.place_name} />
+
+      <ChatContent />
       <ButtonContainer>
         <Button
           id="closeBtn"
@@ -118,7 +124,9 @@ const ChatContainer = ({ state }) => {
         </IconButton>
         <Button onClick={onMap}>지도</Button>
       </ButtonContainer>
-    </>
+
+      <ChatInput />
+    </div>
   );
 };
 
