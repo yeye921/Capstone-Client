@@ -1,22 +1,19 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Box from "@mui/material/Box";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import MainHeader from "../common/MainHeader";
 import CategoryTab from "./CategoryTab";
 import {
-  SearchContainer,
-  Input,
-  ListContainer,
-  ItemContainer,
   AddButton,
 } from "./MainStyle";
-import ListItem from "./CategoryTab/ListItem";
 import { useNavigate } from "react-router-dom";
-import { roadAddrState } from "../../state";
+import { idState, roadAddrState } from "../../state";
 import { useRecoilState } from "recoil";
+import {uIdData} from "../../services/main/uIdData";
 
 const MainViewer = () => {
+  const [uId, setUid] = useRecoilState(idState);
   const [roadAddr, setRoadAddr] = useRecoilState(roadAddrState);
   let text = "";
 
@@ -31,6 +28,11 @@ const MainViewer = () => {
     console.log("버튼클릭");
     navigate("/post");
   };
+
+  useEffect (()=> {
+    console.log("현재 uId: ",uId);
+    uIdData(uId);
+  })
 
   return (
     <div style={{ overflow: "scroll" }}>

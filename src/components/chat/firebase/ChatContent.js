@@ -17,18 +17,8 @@ const Msgs = styled.div`
 
 const ChatContent = () => {
   const [username, setUSername] = useRecoilState(nameState); // 실제
-
-  // example 예시용
-  // const [username, setUsername] = useState("");
-  // useEffect(() => {
-  //   setUsername(prompt("이름을 넣으세요~"));
-  // }, []);
-
-  // 채팅방 구별하는 이름: pId로 설정
-  // const [room, setRoom] = useState("1"); // 예시
   const [room, setRoom] = useRecoilState(pidState); // 실제
 
-  // 파이어베이스에서 받아온 데이터 저장할 변수
   const [msgs, setMsgs] = useState([]);
 
 
