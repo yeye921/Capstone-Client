@@ -88,12 +88,12 @@ const CategoryTab = () => {
       <Routes>
         <Route
           path="/"
-          element={<Content url="http://3.39.125.17/main" value="전체" />}
+          element={<Content url="http://3.39.125.17/main" value="전체" category={null} />}
         />
         <Route
           path="chicken"
           element={
-            <Content url="http://3.39.125.17/main?category=치킨" value="치킨" />
+            <Content url="http://3.39.125.17/main?category=치킨" value="치킨" category="치킨" />
           }
         />
         <Route
@@ -102,25 +102,26 @@ const CategoryTab = () => {
             <Content
               url="http://3.39.125.17/main?category=피자양식"
               value="피자"
+              category="피자"
             />
           }
         />
         <Route
           path="chinese"
           element={
-            <Content url="http://3.39.125.17/main?category=중식" value="중식" />
+            <Content url="http://3.39.125.17/main?category=중식" value="중식" category="중식" />
           }
         />
         <Route
           path="korean"
           element={
-            <Content url="http://3.39.125.17/main?category=한식" value="한식" />
+            <Content url="http://3.39.125.17/main?category=한식" value="한식" category="한식" />
           }
         />
         <Route
           path="japanese"
           element={
-            <Content url="http://3.39.125.17/main?category=일식" value="일식" />
+            <Content url="http://3.39.125.17/main?category=일식" value="일식" category="일식" />
           }
         />
         <Route
@@ -129,19 +130,20 @@ const CategoryTab = () => {
             <Content
               url="http://3.39.125.17/main?category=족발보쌈"
               value="족발"
+              category="족발"
             />
           }
         />
         <Route
           path="night"
           element={
-            <Content url="http://3.39.125.17/main?category=야식" value="야식" />
+            <Content url="http://3.39.125.17/main?category=야식" value="야식" category="야식" />
           }
         />
         <Route
           path="bunsik"
           element={
-            <Content url="http://3.39.125.17/main?category=분식" value="분식" />
+            <Content url="http://3.39.125.17/main?category=분식" value="분식" category="분식" />
           }
         />
         <Route
@@ -150,6 +152,7 @@ const CategoryTab = () => {
             <Content
               url="http://3.39.125.17/main?category=카페디저트"
               value="카페"
+              category="카페디저트"
             />
           }
         />
@@ -159,6 +162,7 @@ const CategoryTab = () => {
             <Content
               url="http://3.39.125.17/main?category=편의점"
               value="편의점"
+              category="편의점"
             />
           }
         />

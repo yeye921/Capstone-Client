@@ -8,7 +8,6 @@ import { AddButton } from '../main/MainStyle';
 import { useNavigate } from 'react-router-dom';
 import { addrState, idState, roadAddrState, xState, yState } from '../../../state';
 import { useRecoilState } from 'recoil';
-import { uxyData } from '../../../services/main/uIdData';
 
 const MainViewer = () => {
 	const [ uId, setUid ] = useRecoilState(idState);
@@ -33,11 +32,6 @@ const MainViewer = () => {
 		console.log('버튼클릭');
 		navigate('/post');
 	};
-
-	useEffect(() => {
-		console.log('현재 u_x u_y: ', x, y);
-		uxyData(x, y);
-	});
 
 	return (
 		<div style={{ overflow: 'scroll' }}>
