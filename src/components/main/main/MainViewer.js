@@ -6,18 +6,20 @@ import MainHeader from '../../common/MainHeader';
 import CategoryTab from './CategoryTab';
 import { AddButton } from '../main/MainStyle';
 import { useNavigate } from 'react-router-dom';
-import { addrState, idState, roadAddrState } from '../../../state';
+import { addrState, idState, roadAddrState, xState, yState } from '../../../state';
 import { useRecoilState } from 'recoil';
-import { uIdData } from '../../../services/main/uIdData';
+import { uxyData } from '../../../services/main/uIdData';
 
 const MainViewer = () => {
 	const [ uId, setUid ] = useRecoilState(idState);
 	const [ roadAddr, setRoadAddr ] = useRecoilState(roadAddrState);
 	const [ addr, setAddr ] = useRecoilState(addrState);
+	const [x, setX] = useRecoilState(xState);
+	const [y, setY] = useRecoilState(yState);
 
 	let text = '';
 
-	if (roadAddr==""){
+	if (roadAddr===""){
 		text = addr;
 	}
 	else if (roadAddr.length > 21) {
@@ -32,10 +34,10 @@ const MainViewer = () => {
 		navigate('/post');
 	};
 
-	// useEffect(() => {
-	// 	console.log('현재 uId: ', uId);
-	// 	uIdData(uId);
-	// });
+	useEffect(() => {
+		console.log('현재 u_x u_y: ', x, y);
+		uxyData(x, y);
+	});
 
 	return (
 		<div style={{ overflow: 'scroll' }}>
