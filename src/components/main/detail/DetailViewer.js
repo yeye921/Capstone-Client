@@ -4,6 +4,7 @@ import { Container, DetailContent, DetailButton } from "./styles";
 import SubInfo from "../../common/SubInfo";
 import MenuModal from "../../menu/MenuModal";
 import Header from "../../common/Header";
+import MainHeader from "../../common/MainHeader";
 
 const DetailViewer = ({ post, postId }) => {
   const [openModal, setOpenModal] = useState({
