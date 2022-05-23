@@ -53,6 +53,7 @@ const ChatContainer = ({ state }) => {
   const [shootBtn, setSBtn] = useState(false);
 
   const navigate = useNavigate();
+<<<<<<< HEAD
 
   //const { pId } = queryString.parse(state);
   const here = useHere("here", "http://3.39.125.17/chat");
@@ -62,6 +63,13 @@ const ChatContainer = ({ state }) => {
   const [cnt, setCnt] = useState(1);
 
   // 원래 주석처리 됨
+=======
+  // buttonState[pid].모집마감 = true;
+  console.log(state.pId);
+  //const { pId } = queryString.parse(state);
+  const here = useHere("here", "http://3.39.125.17/chat");
+  const { data } = useQuery("here");
+>>>>>>> 667c9ca9a155fff4ad66b49b9170b5d73ed115c0
   if (data) {
     console.log("data: ", data);
     console.log("1", data.place_name);
@@ -159,6 +167,7 @@ const ChatContainer = ({ state }) => {
 
   // MenuModal에서 받아온 데이터 recoil로 저장
   useEffect(() => {
+<<<<<<< HEAD
     console.log(state.pId, state.title, state.fee);
     setPid(state.pId);
     setTitle(state.title);
@@ -209,6 +218,27 @@ const ChatContainer = ({ state }) => {
     <div>
       {here.isLoading && <div>isLoading</div>}
       <NoticeBar fee={fee} addr={place} />
+=======
+    //초기화 코드
+    setPostInfo({
+      ...postInfo,
+      [state.pId]: {
+        ...postInfo[state.pId],
+        fee: state.fee,
+        location: data ? data.place_name : null,
+      },
+    });
+    console.log(postInfo[state.pId]);
+  }, [data]);
+
+  return (
+    <div>
+      {/* {here.isLoading && <LoadingText>isLoading</LoadingText>} */}
+      <NoticeBar
+        fee={postInfo[state.pId] ? postInfo[state.pId].fee : "isLoading"}
+        addr={postInfo[state.pId] ? postInfo[state.pId].location : "isLoading"}
+      />
+>>>>>>> 667c9ca9a155fff4ad66b49b9170b5d73ed115c0
 
       <ChatContent />
 

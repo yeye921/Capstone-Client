@@ -1,7 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import { Container } from "../main/CategoryTab/ListItem";
+=======
+import { Container } from "../CategoryTab/ListItem";
+>>>>>>> 667c9ca9a155fff4ad66b49b9170b5d73ed115c0
 
 const ChatItems = (props) => {
   const [items, setItems] = useState(null);

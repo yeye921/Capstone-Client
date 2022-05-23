@@ -10,6 +10,8 @@ import Here from "./pages/Here";
 import Chat from "./pages/Chat";
 import MyMap from "./pages/MyMap";
 import Neighbor from "./pages/Neighbor";
+import My from "./pages/My";
+import ChatLists from "./pages/ChatLists";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import { QueryClientProvider } from "react-query";
@@ -24,6 +26,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Sign />} />
             <Route path="/main/detail" element={<Detail />} />
+            <Route path="/main/My" element={<My />} />
+            <Route path="/main/Chat" element={<ChatLists />} />
             <Route path="/main/*" element={<Main />} />
             <Route path="/post" element={<Post />} />
             <Route path="/menu" element={<Menu />} />
