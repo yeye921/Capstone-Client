@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ListContainer } from "../MainStyle";
 import ListItem from "./ListItem";
-import { mainData } from "../../../services/main/mainData";
+import { mainData } from "../../../../services/main/mainData";
 
 import { useRecoilState } from "recoil";
-import { idState, roadAddrState } from "../../../state";
+import { idState, roadAddrState } from "../../../../state";
 
 const Content = (props) => {
   const [uId, setuId] = useRecoilState(idState);
@@ -18,32 +18,10 @@ const Content = (props) => {
     mainData(setLists, props.url);
   }, [props]);
 
-  // 게시글 데이터 example
   // const [lists, setLists] = useState([
   //   {
   //     title: "짜장면 팟 구함",
   //     r_name: "홍콩반점 매탄점",
-  //     order_time: "22:10:00",
-  //     min_price: 12000,
-  //     post_fee: 250,
-  //   },
-  //   {
-  //     title: "짜장면 팟 구함짜장면 팟 구함짜장면 팟 구함",
-  //     r_name: "래원 매탄점",
-  //     order_time: "22:10:00",
-  //     min_price: 12000,
-  //     post_fee: 250,
-  //   },
-  //   {
-  //     title: "짜장면 팟 구함",
-  //     r_name: "래원 매탄점",
-  //     order_time: "22:10:00",
-  //     min_price: 12000,
-  //     post_fee: 250,
-  //   },
-  //   {
-  //     title: "짜장면 팟 구함",
-  //     r_name: "래원 매탄점래원 매탄점래원 ",
   //     order_time: "22:10:00",
   //     min_price: 12000,
   //     post_fee: 250,

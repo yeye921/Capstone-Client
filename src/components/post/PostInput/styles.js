@@ -1,27 +1,27 @@
-import styled from "styled-components";
-import Button from "../../common/Button";
-import { Input } from "../../main/MainStyle";
+import styled from 'styled-components';
+import Button from '../../common/Button';
+import { Input } from '../../main/main/MainStyle';
 
 const PostContainer = styled.div`
-  text-align: center;
-  margin-top: 1em;
+	text-align: center;
+	margin-top: 1em;
 `;
 
 const BoxCotainer = styled.div`
-  padding: 1em;
-  display: grid;
-  grid-template-columns: 0.5fr 1fr;
-  justify-content: space-around;
+	padding: 1em;
+	display: grid;
+	grid-template-columns: 0.5fr 1fr;
+	justify-content: space-around;
 
-  input {
-    border-color: #ffffff;
-    justify-self: center;
-  }
-  div {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-  }
+	input {
+		border-color: #ffffff;
+		justify-self: center;
+	}
+	div {
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}
 `;
 
 const PostButton = styled(Button)`
@@ -33,33 +33,33 @@ const PostButton = styled(Button)`
 `;
 
 const RestContainer = styled.div`
-  padding: 1em;
-  display: flex;
-  justify-content: space-between;
-  margin-left: 15vw;
-  margin-right: 10vw;
-  font-size: 90%;
-  flex-wrap: wrap;
-  div {
-    color: #696969;
-  }
-  input {
-    width: 15vw;
-  }
-  p {
-    margin: 0px;
-  }
+	padding: 1em;
+	display: flex;
+	justify-content: space-between;
+	margin-left: 15vw;
+	margin-right: 10vw;
+	font-size: 90%;
+	flex-wrap: wrap;
+	div {
+		color: #696969;
+	}
+	input {
+		width: 15vw;
+	}
+	p {
+		margin: 0px;
+	}
 `;
 
 const Fee = styled.div`
-  width: 100%;
-  margin: 0;
-  float: right;
-  text-align: right;
-  margin-right: 15vw;
-  p {
-    font-size: small;
-  }
+	width: 100%;
+	margin: 0;
+	float: right;
+	text-align: right;
+	margin-right: 15vw;
+	p {
+		font-size: small;
+	}
 `;
 
 const InputBox = styled(Input)`

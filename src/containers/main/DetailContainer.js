@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 import queryString from "query-string";
 import DetailViewer from "../../components/main/detail/DetailViewer";
 import { getDetail } from "../../services/main/mainData";

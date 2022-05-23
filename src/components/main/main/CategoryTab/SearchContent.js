@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { ListContainer } from "../MainStyle";
 import ListItem from "./ListItem";
-import { searchData } from "../../../services/main/searchData";
+import { searchData } from "../../../../services/main/searchData";
 
 const SearchContent = (props) => {
   // 페이지 이동하면서 받아온 검색 데이터
