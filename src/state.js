@@ -66,15 +66,15 @@ export const pointState = atom({
   effects_UNSTABLE: [persistAtom],
 });
 
-export const buttonState = atom({
-  key: "buttonState",
-  default: {},
-});
+// export const buttonState = atom({
+//   key: "buttonState",
+//   default: {},
+// });
 
-export const postState = atom({
-  key: "postState",
-  default: {},
-});
+// export const postState = atom({
+//   key: "postState",
+//   default: {},
+// });
 
 // 게시글 아이디
 export const pidState = atom({
@@ -86,6 +86,13 @@ export const pidState = atom({
 // 게시글 배달비
 export const feeState = atom({
   key: "feeState",
+  default: 0,
+  effects_UNSTABLE: [persistAtom],
+});
+
+// 게시글 제목
+export const titleState = atom({
+  key: "titleState",
   default: "",
   effects_UNSTABLE: [persistAtom],
 });
