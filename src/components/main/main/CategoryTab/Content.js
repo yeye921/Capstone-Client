@@ -5,18 +5,20 @@ import ListItem from "./ListItem";
 import { mainData } from "../../../../services/main/mainData";
 
 import { useRecoilState } from "recoil";
-import { idState, roadAddrState } from "../../../../state";
+import { idState, roadAddrState, xState, yState } from "../../../../state";
 
 const Content = (props) => {
   const [uId, setuId] = useRecoilState(idState);
+  const [x, setX] = useRecoilState(xState);
+  const [y, setY] = useRecoilState(yState);
 
   // 실제 게시글 데이터
   const [lists, setLists] = useState(null); // null or []
 
   // // 게시글 목록 불러오기
-  useEffect(() => {
-    mainData(setLists, props.url);
-  }, [props]);
+  // useEffect(() => {
+  //   mainData(setLists, props.url);
+  // }, [props]);
 
   // const [lists, setLists] = useState([
   //   {
@@ -27,6 +29,10 @@ const Content = (props) => {
   //     post_fee: 250,
   //   },
   // ]);
+  useEffect(() => {
+		console.log('현재 u_x u_y: ', x, y);
+    mainData(x, y, setLists, props.url);
+	}, [props]);
 
   return (
     <>
