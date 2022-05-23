@@ -1,11 +1,14 @@
 import React from "react";
+import Header from "../components/common/Header";
+import ChatsContainer from "../containers/main/ChatListContainer";
 
-const ChatLists = () => {
+const Chats = () => {
   return (
     <>
-      <div>ChatLists</div>
+      <Header name="채팅방" />
+      <ChatsContainer />
     </>
   );
 };
 
-export default ChatLists;
+export default Chats;

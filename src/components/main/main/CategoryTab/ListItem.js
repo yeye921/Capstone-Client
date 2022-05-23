@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const Container = styled.div`
+export const Container = styled.div`
   padding-left: 1rem;
   padding-right: 1rem;
   width: 310px;
