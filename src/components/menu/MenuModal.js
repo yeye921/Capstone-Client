@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { menuData } from "../../services/menu";
-import { idState, pidState } from "../../state";
+import { idState, pidState, feeState, titleState, nameState } from "../../state";
 import { Background, ModalContainer, ModalButton } from "../common/Modal";
 import { Text, MenuInput, Title } from "./style";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
+
+import firebase from "firebase/app";
+import "firebase/firestore";
+import { db } from "../../components/chat/firebase/firebase";
+
 
 const MenuModal = ({ openModal, setOpenModal, closeModal, title }) => {
-  const uId = useRecoilValue(idState);
+  const [uId, setUid] = useRecoilState(idState);
   const [pId, setPid] = useRecoilState(pidState);
+  const [fee, setFee] = useRecoilState(feeState);
+  const [nickName, setName] = useRecoilState(nameState);
+  const setTitle = useSetRecoilState(titleState);
+
   const [inputs, setInputs] = useState({
     menu: "",
     price: "",
@@ -18,6 +27,7 @@ const MenuModal = ({ openModal, setOpenModal, closeModal, title }) => {
 
   const { menu, price, request } = inputs;
   const navigate = useNavigate();
+
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -29,20 +39,41 @@ const MenuModal = ({ openModal, setOpenModal, closeModal, title }) => {
   };
 
   const onPublish = () => {
+    userSending();
     menuData(uId, openModal.postId, inputs).then((response) => {
       console.log(response);
-      setPid(openModal.postId);
+    
+      setPid(openModal.postId); // for ChatContent
+      console.log("입장");
       closeModal();
-      //채팅페이지로 이동
+      alert("메뉴가 등록되었습니다. 채팅방으로 이동합니다.");
       navigate(`/chat?pId=${openModal.postId}`, {
         state: {
           pId: openModal.postId,
           title: title,
-          fee: response.fee,
+          // fee: response.fee,
+          fee: "8000",
         },
       });
     });
   };
+
+  // 참여자 전송
+  // const userSending = () => {
+  //   db.collection(`${pId}`).add({
+  //     username: "관리자",
+  //     msg: "입장",
+  //     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+  //   });
+  // }
+  const userSending = () => {
+    // const room = {pId} + "_";
+    db.collection(`${pId}`).add({
+      username: "관리자",
+      msg: "입장",
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+  }
 
   return (
     <>

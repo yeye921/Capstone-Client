@@ -1,5 +1,4 @@
 import React, { useState, useEffect, forwardRef } from "react";
-import firebase from "firebase/app";
 import "firebase/firestore";
 import { db } from "./firebase";
 import { useRecoilState } from "recoil";
@@ -24,7 +23,7 @@ const ChatContent = () => {
 
   // firebase 실시간 데이터 조회
   useEffect(() => {
-    db.collection(room)
+    db.collection(`${room}`)
       .orderBy("timestamp")
       .onSnapshot((querySnapshot) => {
         setMsgs(
@@ -36,15 +35,31 @@ const ChatContent = () => {
       });
   }, []);
 
+// useEffect(() => {
+//   console.log("room: ", room);
+//     db.collection("73")
+//       .orderBy('timestamp')
+//       .onSnapshot(d => {
+//         setMsgs([]);
+//         d.forEach((doc) => {
+//           msgs.push(doc.data().msg);
+//         })
+//         console.log("msgs: ", msgs.join(", "));
+//       })
+//   }, [])
+
+  // useEffect(() => {
+  //   setMsgs([{id:"1", msg: "gdgd"},{id:"1", msg: "gdgd"},{id:"1", msg: "gdgd"},{id:"1", msg: "gdgd"} ]);
+  // }, []);
+
+
   return (
     <>
       <Msgs>
-        {msgs.map(({ id, msg }, index) => (
-          <Message key={index} username={username} msg={msg}></Message>
+        {msgs.map(({ id, msg },) => (
+          <Message key={id} username={username} msg={msg}></Message>
         ))}
       </Msgs>
-
-      {/* <h2>{username}님이 채팅방에 입장</h2> */}
     </>
   );
 };
