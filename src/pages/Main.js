@@ -1,11 +1,11 @@
 import React from 'react';
 import MainContainer from '../containers/main/MainContainer';
-import BottomTab from '../components/common/BottomTab';
+import BottomTab from '../components/main/BottomTab';
 const Main = () => {
   return (
     <>
       <MainContainer />
-      <div
+      {/* <div
         style={{
           position: 'fixed',
           bottom: '0',
@@ -14,7 +14,7 @@ const Main = () => {
         }}
       >
         <BottomTab />
-      </div>
+      </div> */}
     </>
   );
 };

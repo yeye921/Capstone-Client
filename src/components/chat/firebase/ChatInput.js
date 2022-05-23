@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import { db } from "./firebase";
@@ -45,11 +45,19 @@ const Div = styled.div`
 
 const ChatInput = () => {
     const [username, setUSername] = useRecoilState(nameState); 
-    // const [room, setRoom] = useState("1");  // 예시
     const [room, setRoom] = useRecoilState(pidState); // 실제 
 
     const [input, setInput] = useState("");
     const [msgs, setMsgs] = useState([]);
+
+    // 없애기
+    // const [username, setUsername] = useState('');
+    // const [room, setRoom] = useState("1");  // 예시
+
+    // useEffect(() => {
+    //     setUsername(prompt('이름을 넣으세요~'))
+    //   }, [])
+  
 
     const onSubmit = (e) => {
       e.preventDefault();
@@ -57,7 +65,7 @@ const ChatInput = () => {
   
     const onSending = (e) => {
       e.preventDefault();
-      db.collection(room).add({
+      db.collection(`${room}`).add({
         msg: input,
         username: username, // uId로 설정
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),

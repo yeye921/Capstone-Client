@@ -22,7 +22,7 @@ export default function MyMap() {
   const navigate = useNavigate();
 
   const mapscript = () => {
-    kakao.maps.load(() => {
+    kakao.maps.on(() => {
       console.log("x,y", x, y);
       let container = document.getElementById("map");
       let options = {

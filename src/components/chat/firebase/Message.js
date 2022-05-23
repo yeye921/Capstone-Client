@@ -43,24 +43,28 @@ const Message = forwardRef(({ msg, username }, ref) => {
   //   const time = msg.timestamp.toDate();
   //   const arr = time.split(" ");
   //   console.log("time", arr);
+  const isMsg = msg.username === "관리자";
 
   return (
     <div ref={ref}>
       {isUser ? (
         <UserContainer>
-          <Name> {!isUser && `${msg.username || "Unknown User"} `} </Name>
+          <Name>{username}</Name>
           <UserContent>
             <Text>{msg.msg}</Text>
           </UserContent>
         </UserContainer>
+      ) : isMsg? (
+        <></>
       ) : (
         <Container>
-          <Name> {!isUser && `${msg.username || "Unknown User"} `} </Name>
+          <Name>{msg.username}</Name>
           <Content>
             <Text>{msg.msg}</Text>
           </Content>
-        </Container>
-      )}
+      </Container>
+      )
+    }
     </div>
   );
 });

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, forwardRef } from "react";
-import firebase from "firebase/app";
 import "firebase/firestore";
 import { db } from "./firebase";
 import { useRecoilState } from "recoil";
@@ -17,24 +16,14 @@ const Msgs = styled.div`
 
 const ChatContent = () => {
   const [username, setUSername] = useRecoilState(nameState); // 실제
-
-  // example 예시용
-  // const [username, setUsername] = useState("");
-  // useEffect(() => {
-  //   setUsername(prompt("이름을 넣으세요~"));
-  // }, []);
-
-  // 채팅방 구별하는 이름: pId로 설정
-  // const [room, setRoom] = useState("1"); // 예시
   const [room, setRoom] = useRecoilState(pidState); // 실제
 
-  // 파이어베이스에서 받아온 데이터 저장할 변수
   const [msgs, setMsgs] = useState([]);
 
 
   // firebase 실시간 데이터 조회
   useEffect(() => {
-    db.collection(room)
+    db.collection(`${room}`)
       .orderBy("timestamp")
       .onSnapshot((querySnapshot) => {
         setMsgs(
@@ -46,15 +35,31 @@ const ChatContent = () => {
       });
   }, []);
 
+// useEffect(() => {
+//   console.log("room: ", room);
+//     db.collection("73")
+//       .orderBy('timestamp')
+//       .onSnapshot(d => {
+//         setMsgs([]);
+//         d.forEach((doc) => {
+//           msgs.push(doc.data().msg);
+//         })
+//         console.log("msgs: ", msgs.join(", "));
+//       })
+//   }, [])
+
+  // useEffect(() => {
+  //   setMsgs([{id:"1", msg: "gdgd"},{id:"1", msg: "gdgd"},{id:"1", msg: "gdgd"},{id:"1", msg: "gdgd"} ]);
+  // }, []);
+
+
   return (
     <>
       <Msgs>
-        {msgs.map(({ id, msg }, index) => (
-          <Message key={index} username={username} msg={msg}></Message>
+        {msgs.map(({ id, msg },) => (
+          <Message key={id} username={username} msg={msg}></Message>
         ))}
       </Msgs>
-
-      {/* <h2>{username}님이 채팅방에 입장</h2> */}
     </>
   );
 };

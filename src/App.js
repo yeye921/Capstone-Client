@@ -15,6 +15,7 @@ import { RecoilRoot } from "recoil";
 import { QueryClientProvider } from "react-query";
 import queryClient from "./services/mutation";
 
+
 function App() {
   return (
     <RecoilRoot>
@@ -32,7 +33,6 @@ function App() {
             <Route path="/mymap" element={<MyMap />} />
             <Route path="/neighbor" element={<Neighbor />} />
             <Route path="/" element={<Logo />} />
-            {/* <Route path="/test" element={<Test />} /> */}
           </Routes>
         </Router>
       </QueryClientProvider>

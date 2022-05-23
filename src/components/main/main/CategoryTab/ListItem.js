@@ -45,6 +45,7 @@ const Name = styled.div`
 
 const ListItem = ({ item }) => {
   const { p_id, title, r_name, order_time, min_price, post_fee } = item;
+
   const name = r_name.replace("-", " ");
   let newName = "";
   let newTitle = "";

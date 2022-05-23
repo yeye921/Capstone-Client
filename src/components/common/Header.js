@@ -9,7 +9,7 @@ const HeaderBlock = styled.div`
 `;
 
 const Wrapper = styled.div`
-  height: 4rem;
+  height: 3.5rem;
   font-size: large;
   font-weight: 600;
   color: white;
@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 const HeaderText = styled.div`
   margin: 0 auto;
   text-align: center;
-  line-height: 4rem;
+  line-height: 3.5rem;
 `;
 
 const Spacer = styled.div`
