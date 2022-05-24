@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Button from "../../components/common/Button";
-import { ssondaData } from "../../services/chat";
+import { getOrderData, ssondaData } from "../../services/chat";
 import GroupsIcon from "@mui/icons-material/Groups";
 import MapIcon from "@mui/icons-material/Map";
 import { FaMapMarkedAlt } from "react-icons/fa";
@@ -32,6 +32,7 @@ import ChatInput from "../../components/chat/firebase/ChatInput";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import { db } from "../../components/chat/firebase/firebase";
+import OrderModal from "../../components/orders/OrderModal";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -55,6 +56,11 @@ const ChatContainer = ({ state }) => {
 
   const [closeBtn, setCBtn] = useState(false);
   const [shootBtn, setSBtn] = useState(false);
+
+  const [openModal, setOpenModal] = useState({
+    items: [],
+    isOpen: false,
+  });
 
   const navigate = useNavigate();
 
@@ -267,6 +273,22 @@ const ChatContainer = ({ state }) => {
       });
   }, []);
 
+  const onOrder = () => {
+    getOrderData(pId).then((data) => {
+      console.log(data);
+      setOpenModal({
+        items: data,
+        isOpen: true,
+      });
+    });
+  };
+  const closeModal = () => {
+    setOpenModal({
+      ...openModal,
+      isOpen: false,
+    });
+  };
+
   // // 모집 마감
   // useEffect(() => {
   //   // let cnt = 1;
@@ -316,7 +338,7 @@ const ChatContainer = ({ state }) => {
           />
         </IconButton>
 
-        <IconButton>
+        <IconButton onClick={onOrder}>
           {/* <div style={{display:"flex"}}> */}
           <IoReceipt
             style={{ color: "rgba(31, 122, 19, 0.8)", fontSize: "40" }}
@@ -325,7 +347,7 @@ const ChatContainer = ({ state }) => {
           </IoReceipt>
         </IconButton>
       </ButtonContainer>
-
+      <OrderModal openModal={openModal} closeModal={closeModal} />
       <ChatInput />
     </div>
   );
