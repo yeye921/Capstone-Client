@@ -1,10 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { pidState } from "../../../state";
 import { Container } from "../main/CategoryTab/ListItem";
 
 const ChatItems = (props) => {
   const [items, setItems] = useState(null);
+  const [pId, setPId] = useRecoilState(pidState);
   const navigate = useNavigate();
 
   const getData = async () => {
@@ -15,10 +18,23 @@ const ChatItems = (props) => {
       });
   };
 
+  const getPostInfo = async (pId) => {
+    await axios
+      .get(`http://3.39.125.17/chat/list/detail?pId=${pId}`)
+      .then((data) => {
+        navigate(`/chat?pId=${pId}`, {
+          state: {
+            pId: `${pId}`,
+            title: `${data.data.title}`,
+            fee: `${data.data.total_fee}`,
+          },
+        });
+      });
+  };
+
   const onClick = (props) => {
-    navigate(`/chat?pId=${props}`, {
-      state: {},
-    });
+    setPId(props);
+    getPostInfo(props);
   };
 
   useEffect(() => {
