@@ -2,14 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 const Content = styled.div`
-  background-color: white;
-  margin-top: 0.3rem;
-  width: 20.5rem;
-  height: 3.3rem;
+  background-color: rgba(230, 228, 228);
+  // margin-top: 0.1rem;
+  width: 21rem;
+  height: 3.5rem;
   border-radius: 0.5rem;
   padding-left: 1.5rem;
   // padding-top: 0.5rem;
-  padding-top: 0.8rem;
+  padding-top: 0.9rem;
 `;
 const Text = styled.div`
   // color: white;

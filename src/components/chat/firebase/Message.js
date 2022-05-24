@@ -14,7 +14,7 @@ const Container = styled.div`
   margin-left: 0.5rem;
 `;
 const UserContent = styled.div`
-  background-color: rgb(132, 195, 236);
+  background-color: rgb(247, 217, 86);
   color: white;
   display: inline-block;
   padding: 0.5rem;
@@ -22,7 +22,8 @@ const UserContent = styled.div`
   margin-bottom: 0.5rem;
 `;
 const Content = styled.div`
-  background-color: rgba(230, 228, 228, 0.8);
+  background-color: rgb(132, 195, 236);
+  color: white;
   display: inline-block;
   padding: 0.5rem;
   border-radius: 1rem;
