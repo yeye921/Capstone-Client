@@ -20,7 +20,7 @@ export const mainData = async (u_x, u_y, setLists, category) => {
         { withCredentials: false },
       );
       setLists(response.data);
-      console.log("res.data", response.data);
+      // console.log("res.data", response.data);
   } catch (error) {
     console.error(error);
   }

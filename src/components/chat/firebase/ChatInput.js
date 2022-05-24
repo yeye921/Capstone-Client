@@ -8,7 +8,7 @@ import Message from "./Message";
 import styled from "styled-components";
 
 const Input = styled.input`
-    width: 18rem;
+    width: 16.5rem;
     height: 3rem;
     border:none;
     border-right:0px;
@@ -18,7 +18,6 @@ const Input = styled.input`
     padding-left: 1rem;
     font-size: 15px;
     outline: none;
-
 `;
 const Button = styled.button`
     width: 5rem;
@@ -29,17 +28,15 @@ const Button = styled.button`
 const Div = styled.div`
     border: 1px solid grey;
     height: 5rem;
+    margin-left : 0.05rem;
     display: flex;
+    flex-direction: row;
+    justify-content: center;
     border-radius: 0.2rem;
-    // border-width: 0.1rem;
 
-    // position: fixed;
-    // position : relative;
-    // transform : translateY(-100%);
-
+    position: fixed;
+    bottom: 0;
     background-color: white;
-    // margin : 0.2rem;
-
 `;
 
 
@@ -76,20 +73,22 @@ const ChatInput = () => {
     };
 
     return(
+      <Div>
         <form onSubmit={onSubmit}>
-        <Div>
-          <Input value={input} placeholder="내용을 입력해주세요" onChange={(e) => setInput(e.target.value)} />
-          <Button
-            disabled={!input}
-            variant="contained"
-            color="primary"
-            type="submit"
-            onClick={onSending}
-          >
-            전송
-          </Button>
-        </Div>
-      </form>
+          <div style={{display: "flex"}}>
+            <Input value={input} placeholder="내용을 입력해주세요" onChange={(e) => setInput(e.target.value)} />
+            <Button
+              disabled={!input}
+              variant="contained"
+              color="primary"
+              type="submit"
+              onClick={onSending}
+            >
+              전송
+            </Button>
+          </div>
+        </form>
+      </Div>
 
     )
 }

@@ -19,6 +19,8 @@ const MenuModal = ({ openModal, setOpenModal, closeModal, title }) => {
   const [nickName, setName] = useRecoilState(nameState);
   const setTitle = useSetRecoilState(titleState);
 
+  const [cnt, setCnt] = useState(0);
+
   const [inputs, setInputs] = useState({
     menu: "",
     price: "",
@@ -44,6 +46,7 @@ const MenuModal = ({ openModal, setOpenModal, closeModal, title }) => {
       console.log(response);
     
       setPid(openModal.postId); // for ChatContent
+      setTitle(title);
       console.log("입장");
       closeModal();
       alert("메뉴가 등록되었습니다. 채팅방으로 이동합니다.");
@@ -51,8 +54,8 @@ const MenuModal = ({ openModal, setOpenModal, closeModal, title }) => {
         state: {
           pId: openModal.postId,
           title: title,
-          // fee: response.fee,
-          fee: "8000",
+          // fee: response.fee,   // 배달비 전송
+          fee: 5000,
         },
       });
     });
@@ -65,15 +68,18 @@ const MenuModal = ({ openModal, setOpenModal, closeModal, title }) => {
   //     msg: "입장",
   //     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
   //   });
-  // }
+  // 
+
   const userSending = () => {
-    // const room = {pId} + "_";
-    db.collection(`${pId}`).add({
+    const room = pId + "_";
+    const msg = nickName + "입장";
+    db.collection(`${room}`).add({
       username: "관리자",
-      msg: "입장",
+      msg: msg,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
   }
+
 
   return (
     <>
