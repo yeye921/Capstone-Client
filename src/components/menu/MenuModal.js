@@ -58,8 +58,8 @@ const MenuModal = ({ openModal, setOpenModal, closeModal, title }) => {
         state: {
           pId: openModal.postId,
           title: title,
-          // fee: response.fee,   // 배달비 전송
-          fee: 5000,
+          fee: response.fee,   // 배달비 전송
+          // fee: 5000,
         },
       });
     });
