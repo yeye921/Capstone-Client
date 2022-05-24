@@ -15,7 +15,15 @@ import axios from "axios";
 import { useHere } from "../../services/mutation";
 import NoticeBar from "../../components/chat/NoticeBar";
 import { useRecoilState } from "recoil";
-import { idState, roadAddrState, addrState, pidState, titleState, feeState, nameState } from "../../state";
+import {
+  idState,
+  roadAddrState,
+  addrState,
+  pidState,
+  titleState,
+  feeState,
+  nameState,
+} from "../../state";
 import styled from "styled-components";
 
 import ChatContent from "../../components/chat/firebase/ChatContent";
@@ -54,7 +62,6 @@ const ChatContainer = ({ state }) => {
   const here = useHere("here", "http://3.39.125.17/chat");
   const { data } = useQuery("here");
 
-
   const [place, setPlace] = useState(""); // 상단 바 나눔 위치
   // const [cnt, setCnt] = useState(1);
 
@@ -78,11 +85,10 @@ const ChatContainer = ({ state }) => {
   // 원래 주석처리 됨
   if (data) {
     console.log("data: ", data);
-    console.log("1",data.place_name);
+    console.log("1", data.place_name);
 
     // 이거 맞는지?
     sendingHere(data.place_name);
-    
 
     // setPostInfo({
     //   ...postInfo,
@@ -91,7 +97,6 @@ const ChatContainer = ({ state }) => {
     //     location: data.place_name,
     //   },
     // });
-
   }
 
   const onClosing = (e) => {
@@ -135,7 +140,7 @@ const ChatContainer = ({ state }) => {
     if(roadAddr.length === 0){
       sendingSSonda(msg, addr); 
     } else {
-      sendingSSonda(msg, roadAddr); 
+      sendingSSonda(msg, roadAddr);
     }
   };
 
@@ -148,7 +153,6 @@ const ChatContainer = ({ state }) => {
     });
   };
 
-
   const sendingSSonda = (msg, place) => {
     db.collection(`${pId}`).doc("ssonda").set({
       msg: msg,
@@ -157,7 +161,7 @@ const ChatContainer = ({ state }) => {
       place: place,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
-  }
+  };
 
   const sendingClose = (msg) => {
     db.collection(`${pId}`).doc("close").set({
@@ -166,8 +170,7 @@ const ChatContainer = ({ state }) => {
       type: "close",
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
-  }
-
+  };
 
   // MenuModal에서 받아온 데이터 recoil로 저장
   // 여기서 두 콘솔 다르게 찍힘
@@ -274,14 +277,10 @@ const ChatContainer = ({ state }) => {
       })
   }, [])
 
-
   return (
     <div>
       {here.isLoading && <div>isLoading</div>}
-      <NoticeBar
-        fee={fee}
-        addr={place}
-      />
+      <NoticeBar fee={fee} addr={place} />
 
       <ChatContent />
 
@@ -300,10 +299,7 @@ const ChatContainer = ({ state }) => {
 
         </IconButton>
 
-        <IconButton
-          onClick={onShooting}
-          disabled={shootBtn}
-        >
+        <IconButton onClick={onShooting} disabled={shootBtn}>
           <MonetizationOnIcon
             sx={{
               fontSize: 50,
@@ -328,8 +324,6 @@ const ChatContainer = ({ state }) => {
             </IoReceipt>
           </IconButton>
       </ButtonContainer>
-
-      <ChatInput />
     </div>
   );
 };
