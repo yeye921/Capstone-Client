@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Button from "../../components/common/Button";
 import { ssondaData } from "../../services/chat";
-import GroupsIcon from '@mui/icons-material/Groups';
-import MapIcon from '@mui/icons-material/Map';
-import { FaMapMarkedAlt } from 'react-icons/fa';
-import {  IoReceipt } from 'react-icons/io5';
+import GroupsIcon from "@mui/icons-material/Groups";
+import MapIcon from "@mui/icons-material/Map";
+import { FaMapMarkedAlt } from "react-icons/fa";
+import { IoReceipt } from "react-icons/io5";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import IconButton from "@mui/material/IconButton";
 import { useRecoilValue, useSetRecoilState } from "recoil";
@@ -69,8 +69,9 @@ const ChatContainer = ({ state }) => {
     const room = pId + "_";
     db.collection(`${room}`).add({
       place: place,
-    })
-  }
+      username: "여기서모여위치",
+    });
+  };
 
   // const userSending = () => {
   //   const room = pId + "_";
@@ -84,20 +85,20 @@ const ChatContainer = ({ state }) => {
 
   // 원래 주석처리 됨
   if (data) {
-    console.log("data: ", data);
+    // console.log("data: ", data);
     console.log("1", data.place_name);
 
     // 이거 맞는지?
     sendingHere(data.place_name);
-
-    // setPostInfo({
-    //   ...postInfo,
-    //   [state.pId]: {
-    //     ...postInfo[state.pId],
-    //     location: data.place_name,
-    //   },
-    // });
   }
+
+  useEffect(() => {
+    if (data) {
+      console.log("1", data.place_name);
+      // 이거 맞는지?
+      sendingHere(data.place_name);
+    }
+  }, [data]);
 
   const onClosing = (e) => {
     // setPostInfo({
@@ -137,8 +138,8 @@ const ChatContainer = ({ state }) => {
 
     const msg = "내가 쏜다!";
     console.log(roadAddr);
-    if(roadAddr.length === 0){
-      sendingSSonda(msg, addr); 
+    if (roadAddr.length === 0) {
+      sendingSSonda(msg, addr);
     } else {
       sendingSSonda(msg, roadAddr);
     }
@@ -185,9 +186,9 @@ const ChatContainer = ({ state }) => {
   // }, [])
 
   // 맨 처음 배달비 설정
-  useEffect(()=> {
+  useEffect(() => {
     setFee(state.fee);
-  },[]);
+  }, []);
 
   // 채팅 받아오기
   useEffect(() => {
@@ -197,11 +198,11 @@ const ChatContainer = ({ state }) => {
       .orderBy("timestamp")
       .onSnapshot((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          if(doc.data().type === "close"){
+          if (doc.data().type === "close") {
             console.log("모집마감 주체자", doc.data().username);
             setCBtn(true);
           }
-          if(doc.data().type === "ssonda"){
+          if (doc.data().type === "ssonda") {
             console.log("내가쏜다 주체자", doc.data().username);
             setSBtn(true);
             setPlace(doc.data().place);
@@ -216,7 +217,6 @@ const ChatContainer = ({ state }) => {
         });
       });
   }, []);
-
 
   // Ver1, 일단 사람 수만 셈
   // useEffect(() => {
@@ -245,37 +245,44 @@ const ChatContainer = ({ state }) => {
     const room = pId + "_";
     db.collection(`${room}`)
       .orderBy("timestamp")
-      .onSnapshot((querySnapshot) => { // 변화 감지
+      .onSnapshot((querySnapshot) => {
+        // 변화 감지
         let cnt = 1;
         let currentFee = state.fee;
-        querySnapshot.forEach(doc => { // 각 문서마다 실행
-          if(doc.data().username === "관리자"){
+        querySnapshot.forEach((doc) => {
+          // 각 문서마다 실행
+          console.log("doc.data", doc.data());
+          if (doc.data().username === "관리자") {
             // console.log("db에 존재", cnt, fee )
             cnt += 1;
-            currentFee = Math.floor(currentFee/cnt);
+            currentFee = Math.floor(currentFee / cnt);
             setFee(currentFee);
             console.log("db에 존재2", cnt, currentFee, fee);
           }
-        });
-      })
-  }, [])
-
-  // 모집 마감
-  useEffect(() => {
-    // let cnt = 1;
-    // let currentFee = fee;  // 이런식으로 해야함
-    const room = pId + "_";
-    db.collection(`${room}`)
-      .orderBy("timestamp")
-      .onSnapshot((querySnapshot) => { // 변화 감지
-        querySnapshot.forEach(doc => { // 각 문서마다 실행
-          if(doc.data().place){
-            console.log("여기서모여", doc.data().place);
-            setPlace(doc.data().place);
+          if (doc.data().username === "여기서모여위치") {
+            console.log("여기서모여", doc.data());
+            setPlace(doc.data());
           }
         });
-      })
-  }, [])
+      });
+  }, []);
+
+  // // 모집 마감
+  // useEffect(() => {
+  //   // let cnt = 1;
+  //   // let currentFee = fee;  // 이런식으로 해야함
+  //   const room = pId + "_";
+  //   db.collection(`${room}`)
+  //     .orderBy("timestamp")
+  //     .onSnapshot((querySnapshot) => { // 변화 감지
+  //       querySnapshot.forEach(doc => { // 각 문서마다 실행
+  //         if(doc.data().username === "여기서모여위치"){
+  //           console.log("여기서모여", doc.data().place);
+  //           setPlace(doc.data().place);
+  //         }
+  //       });
+  //     })
+  // }, [])
 
   return (
     <div>
@@ -285,18 +292,13 @@ const ChatContainer = ({ state }) => {
       <ChatContent />
 
       <ButtonContainer>
-        <IconButton
-          id="closeBtn"
-          onClick={onClosing}
-          disabled={closeBtn}
-        >
+        <IconButton id="closeBtn" onClick={onClosing} disabled={closeBtn}>
           <GroupsIcon
             sx={{
               fontSize: 50,
               color: "rgba(31, 122, 19, 0.8)",
             }}
           />
-
         </IconButton>
 
         <IconButton onClick={onShooting} disabled={shootBtn}>
@@ -307,23 +309,24 @@ const ChatContainer = ({ state }) => {
             }}
           />
         </IconButton>
-        
+
         <IconButton onClick={onMap}>
           <FaMapMarkedAlt
-              style={{color: "rgba(31, 122, 19, 0.8)", fontSize:"40"}}
-            />
+            style={{ color: "rgba(31, 122, 19, 0.8)", fontSize: "40" }}
+          />
         </IconButton>
-        
-      
-          <IconButton>
+
+        <IconButton>
           {/* <div style={{display:"flex"}}> */}
-            <IoReceipt
-                  style={{color: "rgba(31, 122, 19, 0.8)", fontSize:"40"}}
-                >
-               <div>주문서</div>
-            </IoReceipt>
-          </IconButton>
+          <IoReceipt
+            style={{ color: "rgba(31, 122, 19, 0.8)", fontSize: "40" }}
+          >
+            <div>주문서</div>
+          </IoReceipt>
+        </IconButton>
       </ButtonContainer>
+
+      <ChatInput />
     </div>
   );
 };
