@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { menuData } from "../../services/menu";
-import { idState, pidState, feeState, titleState, nameState } from "../../state";
+import {
+  idState,
+  pidState,
+  feeState,
+  titleState,
+  nameState,
+} from "../../state";
 import { Background, ModalContainer, ModalButton } from "../common/Modal";
 import { Text, MenuInput, Title } from "./style";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -10,7 +16,6 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import { db } from "../../components/chat/firebase/firebase";
-
 
 const MenuModal = ({ openModal, setOpenModal, closeModal, title }) => {
   const [uId, setUid] = useRecoilState(idState);
@@ -30,7 +35,6 @@ const MenuModal = ({ openModal, setOpenModal, closeModal, title }) => {
   const { menu, price, request } = inputs;
   const navigate = useNavigate();
 
-
   const onChange = (e) => {
     const { name, value } = e.target;
 
@@ -44,7 +48,7 @@ const MenuModal = ({ openModal, setOpenModal, closeModal, title }) => {
     userSending();
     menuData(uId, openModal.postId, inputs).then((response) => {
       console.log(response);
-    
+
       setPid(openModal.postId); // for ChatContent
       setTitle(title);
       console.log("입장");
@@ -68,7 +72,7 @@ const MenuModal = ({ openModal, setOpenModal, closeModal, title }) => {
   //     msg: "입장",
   //     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
   //   });
-  // 
+  //
 
   const userSending = () => {
     const room = pId + "_";
@@ -78,8 +82,7 @@ const MenuModal = ({ openModal, setOpenModal, closeModal, title }) => {
       msg: msg,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
-  }
-
+  };
 
   return (
     <>
