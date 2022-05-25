@@ -14,7 +14,7 @@ export const ssondaData = async (uId, pId) => {
         u_id: uId,
       },
       { headers: headers },
-      { withCredentials: false }
+      { withCredentials: false },
     );
     return response;
   } catch (error) {
@@ -28,5 +28,14 @@ export const getLocationData = async (setUserInfo, pId) => {
     console.log(response);
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const getOrderData = async (props) => {
+  try {
+    const response = await axios.get(BASE_URL + `/orders?pId=${props}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
   }
 };

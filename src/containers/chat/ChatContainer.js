@@ -24,6 +24,7 @@ import ChatInput from "../../components/chat/firebase/ChatInput";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import { db } from "../../components/chat/firebase/firebase";
+import OrderModal from "../../components/orders/OrderModal";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -47,6 +48,11 @@ const ChatContainer = ({ state }) => {
 
   const [closeBtn, setCBtn] = useState(false);
   const [shootBtn, setSBtn] = useState(false);
+
+  const [openModal, setOpenModal] = useState({
+    items: [],
+    isOpen: false,
+  });
 
   const navigate = useNavigate();
 
@@ -229,6 +235,22 @@ const ChatContainer = ({ state }) => {
       })
   }, [])
 
+  const onOrder = () => {
+    getOrderData(pId).then((data) => {
+      console.log(data);
+      setOpenModal({
+        items: data,
+        isOpen: true,
+      });
+    });
+  };
+  const closeModal = () => {
+    setOpenModal({
+      ...openModal,
+      isOpen: false,
+    });
+  };
+
   // // 모집 마감
   // useEffect(() => {
   //   // let cnt = 1;
@@ -330,7 +352,7 @@ const ChatContainer = ({ state }) => {
             </IoReceipt>
           </IconButton>
       </ButtonContainer>
-
+      <OrderModal openModal={openModal} closeModal={closeModal} />
       <ChatInput />
     </div>
   );
