@@ -54,11 +54,12 @@ const MenuModal = ({ openModal, setOpenModal, closeModal, title }) => {
       console.log("입장");
       closeModal();
       alert("메뉴가 등록되었습니다. 채팅방으로 이동합니다.");
+      console.log("메뉴모달 fee", response.fee);
       navigate(`/chat?pId=${openModal.postId}`, {
         state: {
           pId: openModal.postId,
           title: title,
-          fee: response.fee,   // 배달비 전송
+          fee: response.total_fee,   // 배달비 전송
           // fee: 5000,
         },
       });
@@ -75,7 +76,7 @@ const MenuModal = ({ openModal, setOpenModal, closeModal, title }) => {
   //
 
   const userSending = () => {
-    const room = pId + "_";
+    const room = pId + "참여자 리스트";
     const msg = nickName + "입장";
     db.collection(`${room}`).add({
       username: "관리자",
