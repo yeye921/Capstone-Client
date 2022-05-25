@@ -1,3 +1,4 @@
+import { ControlPointDuplicate } from "@material-ui/icons";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +23,7 @@ const ChatItems = (props) => {
     await axios
       .get(`http://3.39.125.17/chat/list/detail?pId=${pId}`)
       .then((data) => {
+        console.log("채팅리스트에서 넘어온 배달비", data.data.total_fee);
         navigate(`/chat?pId=${pId}`, {
           state: {
             pId: `${pId}`,
