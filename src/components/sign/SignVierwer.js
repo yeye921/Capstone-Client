@@ -10,11 +10,13 @@ import {
   AccountInput,
   Button,
   ButtonContainer,
+  CheckContainer,
 } from "./SignStyle";
 import { signData } from "../../../src/services/sign/signData";
 import { useNavigate } from "react-router-dom";
 import { idState } from "../../state";
 import { useRecoilState } from "recoil";
+import axios from "axios";
 
 const SignViewer = () => {
   const navigate = useNavigate();
@@ -23,11 +25,12 @@ const SignViewer = () => {
   const [inputs, setInputs] = useState({
     id: "",
     // 여기에 인증번호 추가
+    check: "",
     name: "",
     pw: "",
     account: "",
   });
-  const { id, name, pw, account } = inputs;
+  const { id, check, name, pw, account } = inputs;
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -41,10 +44,16 @@ const SignViewer = () => {
   const [bank, setBank] = useState("");
   const [pwCheck, setPwCheck] = useState("");
   const [pwError, setPwError] = useState(false);
+  const [phoneCheck, setPhoneCheck] = useState(""); //인증번호
+  const [phoneError, setPhoneError] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
     // 비밀번호와 비밀번호 체크가 다를 경우를 검증
+    if (check !== phoneCheck) {
+      return setPhoneError(true);
+    }
+
     if (pw !== pwCheck) {
       return setPwError(true);
     }
@@ -64,6 +73,29 @@ const SignViewer = () => {
     setPwCheck(e.target.value);
   };
 
+  const onChangePhone = (e) => {
+    setInputs({
+      ...inputs,
+      check: e.target.value,
+    });
+    console.log(check);
+    setPhoneError(e.target.value !== phoneCheck);
+  };
+
+  const getCheck = async (props) => {
+    await axios
+      .get(`http://3.39.125.17/signup/certification?phoneNumber=${props}`)
+      .then((data) => {
+        console.log(data.data);
+        setPhoneCheck(data.data);
+      });
+  };
+
+  const onPhoneCheck = (e) => {
+    console.log(id);
+    getCheck(id);
+  };
+
   return (
     <Form>
       <form onSubmit={onSubmit}>
@@ -71,6 +103,22 @@ const SignViewer = () => {
           <Label>핸드폰번호</Label>
           <Input name="id" value={id} required onChange={onChange} />
         </InputContainer>
+        <CheckContainer>
+          <button onClick={onPhoneCheck}>인증</button>
+          <input
+            name="check"
+            value={check}
+            required
+            onChange={onChangePhone}
+            autoComplete="off"
+          ></input>
+          {phoneError && (
+            <div style={{ color: "red", marginTop: "0.5rem" }}>
+              인증번호가 일치하지 않습니다.
+            </div>
+          )}
+        </CheckContainer>
+
         <InputContainer>
           <Label>닉네임</Label>
           <Input name="name" value={name} required onChange={onChange} />
