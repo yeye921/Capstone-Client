@@ -22,7 +22,7 @@ const HeaderText = styled.div`
   line-height: 3.5rem;
 `;
 
-const Spacer = styled.div`
+export const Spacer = styled.div`
   height: 4rem;
 `;
 
