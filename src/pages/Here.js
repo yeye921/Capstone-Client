@@ -15,33 +15,78 @@ import { xState, yState } from "../state";
 export default function Here() {
   const navigate = useNavigate();
   const Info = useLocation();
-  const [userInfo, setUserInfo] = useState();
-  const { isLoading, data } = useQuery("here");
+  const [userInfo, setUserInfo] = useState({});
+  //const { isLoading } = useQuery("here");
+
+  const [data, setData] = useState({
+    x: "",
+    y: "",
+  });
+
   const [x, setX] = useRecoilState(xState);
   const [y, setY] = useRecoilState(yState);
 
-  if (isLoading) {
-    console.log(isLoading);
-  }
+  useEffect(() => {
+    axios
+      .all([
+        axios.get(`http://3.39.125.17/chat?pId=${Info.state.pId}`),
+        axios.get(
+          `http://3.39.125.17/chat/nanumPlaceInfo?pId=${Info.state.pId}`,
+        ),
+      ])
+      .then(
+        axios.spread((res1, res2) => {
+          let users = res1.data;
+          if (users.length !== 0) {
+            // setUserInfo(users);
+          }
+          if (res2) {
+            console.log(res2);
+            // setData({
+            //   x: res2.data.x,
+            //   y: res2.data.y,
+            // });
+          }
+          mapscript(users, res2.data);
+        }),
+      )
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    if (userInfo.length !== 0) {
+      //mapscript(userInfo);
+    }
+  }, [data]);
 
   const getData = async () => {
     await axios
       .get(`http://3.39.125.17/chat?pId=${Info.state.pId}`)
       .then((data) => {
         let users = data.data;
-        console.log(users);
-        if (users.length === 0) {
+        if (users.length !== 0) {
           setUserInfo(users);
         }
-        mapscript(users);
+        //mapscript(users);
+      });
+  };
+
+  const getPLocation = async () => {
+    await axios
+      .get(`http://3.39.125.17/chat/nanumPlaceInfo?pId=${Info.state.pId}`)
+      .then((response) => {
+        setData({
+          x: response.data.x,
+          y: response.data.y,
+        });
       });
   };
 
   // props로 참여자들 위치 받아와야 함
-  const mapscript = (props) => {
+  const mapscript = (users, data) => {
     kakao.maps.load(() => {
-      let Y = data ? data.y : y;
-      let X = data ? data.x : x;
+      let Y = data.y != "" ? data.y : y;
+      let X = data.x != "" ? data.x : x;
       console.log(data);
       let container = document.getElementById("map");
       let options = {
@@ -50,9 +95,8 @@ export default function Here() {
       };
       //map
       const map = new kakao.maps.Map(container, options);
-
       //markerdata 대신 서버에서 받아온 데이터로 대체
-      props.forEach((el) => {
+      users.forEach((el) => {
         new kakao.maps.Marker({
           map: map,
           position: new kakao.maps.LatLng(el.u_y, el.u_x),
@@ -60,7 +104,7 @@ export default function Here() {
         });
       });
 
-      if (data) {
+      if (data.x != "" && data.y != "") {
         let imageSrc = "https://cdn-icons-png.flaticon.com/512/929/929426.png", // 마커이미지의 주소
           imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기
           imageOption = { offset: new kakao.maps.Point(27, 69) };
@@ -68,7 +112,7 @@ export default function Here() {
         let markerImage = new kakao.maps.MarkerImage(
             imageSrc,
             imageSize,
-            imageOption
+            imageOption,
           ),
           markerPosition = new kakao.maps.LatLng(data.y, data.x); // 마커가 표시될 위치
 
@@ -100,9 +144,6 @@ export default function Here() {
       }
     });
   };
-  useEffect(() => {
-    getData();
-  }, [userInfo]);
   const backClick = () => {
     // 뒤로 가기
     navigate("/main"); // 채팅방 만들어지면 경로 수정하기
