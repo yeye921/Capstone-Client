@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Title = styled.p`
   font-size: 2rem;
@@ -24,10 +24,11 @@ const InputContainer = styled.div`
 `;
 const Input = styled.input`
   width: 17rem;
-  line-height: 2.7rem;
+  line-height: 2rem;
   border-width: 0.06rem;
   font-size: large;
   padding-left: 1rem;
+  border-radius: 5px;
 `;
 const BankContainer = styled.div`
   display: flex;
@@ -63,6 +64,12 @@ const ButtonContainer = styled.div`
   // background-color: yellow;
 `;
 
+const CheckContainer = styled.div`
+  width: 17em;
+  margin-left: 2rem;
+  margin-bottom: 1em;
+`;
+
 export {
   Title,
   Form,
@@ -73,5 +80,6 @@ export {
   AccountContainer,
   AccountInput,
   Button,
-  ButtonContainer
+  ButtonContainer,
+  CheckContainer,
 };
