@@ -40,7 +40,7 @@ const Payment = (effect, deps) => {
       buyer_name: `${name}`,
       buyer_tel: "010-2217-8663", //테스트용
       buyer_addr: `${addr}`,
-      //   m_redirect_url: "http://3.39.125.17/payments/complete/mobile",
+      m_redirect_url: "http://3.39.125.17/payments/complete/mobile",
     };
     IMP.request_pay(data, callback);
   };
