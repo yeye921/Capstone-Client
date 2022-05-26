@@ -81,22 +81,24 @@ const ChatContainer = ({ state }) => {
   }
 
   // 원래 주석처리 됨
-  if (data) {
-    // console.log("서버에서 받아온 나눔위치",data.place_name);
+  // if (data) {
+  //   // console.log("서버에서 받아온 나눔위치",data.place_name);
 
-    sendingHere(data.place_name);
-  }
+  //   sendingHere(data.place_name);
+  //   // 여기서 주문 확정 메시지도 보내야 함
+  // }
 
-  // useEffect(()=> {
-  //   if(data) {
-  //     sendingHere(data.place_name);
-  //     // 이걸 보내고 나서 읽어와야함
-  //   }
-  // }, [data]);
+  useEffect(()=> {
+    if(data) {
+      sendingHere(data.place_name);
+      // 이걸 보내고 나서 읽어와야 함
+      // 여기서 주문 확정 알림 보냄
+    }
+  }, [data]);
 
   const onClosing = () => {
     const msg = "모집이 마감되었습니다.";
-    sendingClose(msg);
+    sendingClose(msg); // 이 메시지가 빨리 안감
     here.mutate({ pId: pId });
   };
 
@@ -140,25 +142,8 @@ const ChatContainer = ({ state }) => {
     });
   };
 
-  // MenuModal에서 받아온 데이터 recoil로 저장
-  // 여기서 두 콘솔 다르게 찍힘
-
-  // 맨 처음 배달비 설정
-  // useEffect(()=> {
-  //   setFee(state.fee);
-  //   setTotalFee(state.fee);
-  //   console.log("이전페이지에서 받아온 fee", state.fee, fee, totalFee);
-  // },[]);
-
-  // useEffect(() => {
-  //   const fee = state.fee;
-  //   console.log("이전에서 넘어온 state fee", state.fee);
-  // }, [fee])
-
   // 채팅 받아오기
   useEffect(() => {
-    // let currentFee = fee;  // 이런식으로 해야함
-    // let cnt = 0;
     db.collection(`${pId}`)
       .orderBy("timestamp")
       .onSnapshot((querySnapshot) => {
@@ -205,7 +190,7 @@ const ChatContainer = ({ state }) => {
               cnt += 1;
               let currentFee = Math.floor(totalFee/cnt);
               setFee(currentFee);
-              // console.log("배달비 계산", cnt, currentFee, fee);
+              console.log("배달비 계산", cnt, currentFee, fee);
             }
           });
         })
@@ -251,59 +236,6 @@ const ChatContainer = ({ state }) => {
     });
   };
 
-  // // 모집 마감
-  // useEffect(() => {
-  //   // let cnt = 1;
-  //   // let currentFee = fee;  // 이런식으로 해야함
-  //   const room = pId + "_";
-  //   db.collection(`${room}`)
-  //     .orderBy("timestamp")
-  //     .onSnapshot((querySnapshot) => { // 변화 감지
-  //       querySnapshot.forEach(doc => { // 각 문서마다 실행
-  //         if(doc.data().username === "여기서모여위치"){
-  //           console.log("여기서모여", doc.data().place);
-  //           setPlace(doc.data().place);
-  //         }
-  //       });
-  //     })
-  // }, [])
-
-  // db에 정보가 간 다음에 이걸 실행해야함 
-  // 그 이전에 실행하는 게 아니라
-  // useEffect(() => {
-  //   const room = pId + "_1";
-  //   db.collection(`${room}`)
-  //     .orderBy("timestamp")
-  //     .onSnapshot((d) => { 
-  //       d.forEach((doc) => {
-  //         console.log("doc.data", doc.data());
-  //         if(doc.data().username === "여기서모여위치"){
-  //           console.log("여기서모여", doc.data().place);
-  //         }
-  //       })
-  //     })
-  // }, []);
-  
-  // Ver1, 일단 사람 수만 셈
-  // useEffect(() => {
-  //   let cnt = 0;
-  //   const room = pId + "_";
-  //   db.collection(`${room}`)
-  //     .orderBy("timestamp")
-  //     .onSnapshot((d) => {
-  //       d.forEach((doc) => {
-  //         console.log("문서개수");
-  //         if(doc.data().username === "관리자"){
-  //           console.log("db에 존재");
-  //           cnt += 1;
-  //           console.log("현재cnt",cnt);
-  //           // currentFee /= cnt;  // 둘다 int형이어야 함
-  //           // console.log("db에 존재2", cnt, currentFee)
-  //         }
-  //       })
-  //     })
-  // }, [])
-
 
   return (
     <div>
@@ -324,7 +256,8 @@ const ChatContainer = ({ state }) => {
           <GroupsIcon
             sx={{
               fontSize: 50,
-              color: "rgba(31, 122, 19, 0.8)",
+              // color: "rgba(31, 122, 19, 0.8)",
+              color: closeBtn ? "grey" :"rgba(31, 122, 19, 0.8)",
             }}
           />
 
@@ -337,7 +270,7 @@ const ChatContainer = ({ state }) => {
           <MonetizationOnIcon
             sx={{
               fontSize: 50,
-              color: "rgba(31, 122, 19, 0.8)",
+              color: shootBtn ? "grey" :"rgba(31, 122, 19, 0.8)",
             }}
           />
         </IconButton>

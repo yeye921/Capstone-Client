@@ -28,7 +28,7 @@ export default function Neighbor() {
 
       const map = new kakao.maps.Map(container, options);
       // map.setDraggable(false); // 지도 드래그 이동 막기
-      map.setZoomable(false); // 지도 확대 축소 막기
+      // map.setZoomable(false); // 지도 확대 축소 막기
 
       // 좌표-주소 변환 객체 생성
       let geocoder = new kakao.maps.services.Geocoder();
@@ -45,6 +45,7 @@ export default function Neighbor() {
 
           setX(locPosition.getLng());
           setY(locPosition.getLat());
+          console.log("x,y",locPosition.getLng(),locPosition.getLat());
 
           // 마커 좌표 - 위치 변환
           searchDetailAddrFromCoords(locPosition, function (result, status) {
@@ -98,6 +99,10 @@ export default function Neighbor() {
         kakao.maps.event.addListener(map, "click", function (mouseEvent) {
           let latlng = mouseEvent.latLng;
           marker.setPosition(latlng);
+          setX(latlng.getLng()); // 위도
+          setY(latlng.getLat()); // 경도
+          console.log("x,y 클릭",latlng.getLng(),latlng.getLat());
+
 
           infowindow.open(map, marker);
 
@@ -118,6 +123,8 @@ export default function Neighbor() {
           setX(marker.getPosition().La); // 위도
           setY(marker.getPosition().Ma); // 경도
           //   console.log('dragend', x, y);
+          console.log("x,y 드래그",marker.getPosition().La,marker.getPosition().Ma);
+
           infowindow.open(map, marker);
 
           searchDetailAddrFromCoords(
