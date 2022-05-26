@@ -78,8 +78,11 @@ const SignViewer = () => {
       ...inputs,
       check: e.target.value,
     });
-    console.log(check);
-    setPhoneError(e.target.value !== phoneCheck);
+
+    console.log(e.target.value);
+    console.log(phoneCheck);
+    if (e.target.value != phoneCheck) setPhoneError(true);
+    else setPhoneError(false);
   };
 
   const getCheck = async (props) => {
@@ -87,13 +90,13 @@ const SignViewer = () => {
       .get(`http://3.39.125.17/signup/certification?phoneNumber=${props}`)
       .then((data) => {
         console.log(data.data);
-        setPhoneCheck(data.data);
+        setPhoneCheck(data.data); //phoneCheck 설정
       });
   };
 
   const onPhoneCheck = (e) => {
     console.log(id);
-    getCheck(id);
+    getCheck(id); //인증번호 받음
   };
 
   return (
