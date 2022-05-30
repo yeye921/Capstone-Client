@@ -90,6 +90,8 @@ const ChatContainer = ({ state }) => {
 
   useEffect(()=> {
     if(data) {
+      console.log("서버data", data);
+      console.log("서버에서 받아온 나눔위치",data.place_name);
       sendingHere(data.place_name);
       // 이걸 보내고 나서 읽어와야 함
       // 여기서 주문 확정 알림 보냄
@@ -138,6 +140,7 @@ const ChatContainer = ({ state }) => {
       state: {
         pId: pId,
         title: title,
+        fee: totalFee,
       },
     });
   };
@@ -197,6 +200,10 @@ const ChatContainer = ({ state }) => {
       } else {
         // 내가 쏜다일 경우
         // 다시 원래대로 되돌림
+        
+        if(data){
+          setPlace(data.place_name); // 추가
+        }
         if(ssonda){
           setFee(totalFee);
         } else {

@@ -146,11 +146,28 @@ export default function Here() {
   };
   const backClick = () => {
     // 뒤로 가기
-    navigate("/main"); // 채팅방 만들어지면 경로 수정하기
+    navigate(`/chat?pId=${Info.state.pId}`, {
+      state: {
+        pId: Info.state.pId,
+        title: Info.state.title,
+        fee: Info.state.fee, 
+      },
+    });
   };
   return (
     <div>
-      <Header name={Info.state.title} />
+      <div className="header">
+        <div onClick={backClick}>
+          <ArrowBackIosNewIcon
+            sx={{
+              fontSize: 26,
+              color: "white",
+              paddingLeft: "0.5rem",
+            }}
+          />
+        </div>
+        <div className="text">여기서 모여</div>
+      </div>
       <div
         id="map"
         // style={{width:"400px", height:"800px"}}
