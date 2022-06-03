@@ -44,7 +44,7 @@ const SignViewer = () => {
   const [bank, setBank] = useState("");
   const [pwCheck, setPwCheck] = useState("");
   const [pwError, setPwError] = useState(false);
-  const [phoneCheck, setPhoneCheck] = useState(""); //인증번호
+  const [phoneCheck, setPhoneCheck] = useState("1823"); //인증번호
   const [phoneError, setPhoneError] = useState(false);
 
   const onSubmit = (e) => {
@@ -96,7 +96,7 @@ const SignViewer = () => {
 
   const onPhoneCheck = (e) => {
     console.log(id);
-    getCheck(id); //인증번호 받음
+    // getCheck(id); //인증번호 받음
   };
 
   return (

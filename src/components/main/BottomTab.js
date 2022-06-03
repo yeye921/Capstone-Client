@@ -18,9 +18,9 @@ import { idState, roadAddrState } from "../../state";
 import { useRecoilState } from "recoil";
 
 const BottomNavigationAction = styled(MuiBottomNavigationAction)(`
-  &.Mui-selected {
-    color: rgb(104, 193, 251);
-  }
+//   &.Mui-selected {
+//     color: rgb(104, 193, 251);
+//   }
 `);
 
 const useStyles = makeStyles({
@@ -57,12 +57,12 @@ const BottomTab = () => {
             component={Link}
             to="/main"
           />
-          <BottomNavigationAction
+          {/* <BottomNavigationAction
             label="Cart"
             icon={<ShoppingCartOutlinedIcon />}
             component={Link}
             to="/main/cart"
-          />
+          /> */}
           {/* <BottomNavigationAction label="Like" icon={<FavoriteIcon />} /> */}
           <BottomNavigationAction
             label="Chat"
