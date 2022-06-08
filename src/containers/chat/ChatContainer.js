@@ -148,7 +148,8 @@ const ChatContainer = ({ state }) => {
 		navigate("/here", {
 			state: {
 				pId: pId,
-				title: title
+				title: title,
+				fee: totalFee
 			}
 		});
 	};
