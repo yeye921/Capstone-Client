@@ -12,7 +12,7 @@ const ChatItems = (props) => {
 
   const getData = async () => {
     await axios
-      .get(`http://3.39.125.17/chat/list?uId=${props.uId}`)
+      .get(`http://3.39.164.26/chat/list?uId=${props.uId}`)
       .then((data) => {
         setItems(data.data);
       });
@@ -20,7 +20,7 @@ const ChatItems = (props) => {
 
   const getPostInfo = async (pId) => {
     await axios
-      .get(`http://3.39.125.17/chat/list/detail?pId=${pId}`)
+      .get(`http://3.39.164.26/chat/list/detail?pId=${pId}`)
       .then((data) => {
         console.log("채팅리스트에서 넘어온 배달비", data.data.total_fee);
         navigate(`/chat?pId=${pId}`, {

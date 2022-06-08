@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const POST_BASE_URL = "http://3.39.125.17/post";
+const POST_BASE_URL = "http://3.39.164.26/post";
 
 export const menuData = async (uId, postId, inputData) => {
   const headers = {
@@ -17,7 +17,7 @@ export const menuData = async (uId, postId, inputData) => {
         request: inputData.request,
       },
       { headers: headers },
-      { withCredentials: false }
+      { withCredentials: false },
     );
     console.log(response);
     return response.data;

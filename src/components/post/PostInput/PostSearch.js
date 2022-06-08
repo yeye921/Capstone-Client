@@ -48,7 +48,7 @@ const Search = ({ searchRest }) => {
 
   const getData = async () => {
     await axios
-      .get(`http://3.39.125.17/post?rName=${restaurant}`)
+      .get(`http://3.39.164.26/post?rName=${restaurant}`)
       .then((data) => {
         let restaurants = data.data;
         if (restaurants.length === 0) {

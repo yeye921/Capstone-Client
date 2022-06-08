@@ -106,7 +106,7 @@ const OrderModal = ({ openModal, setOpenModal, closeModal }) => {
     //null값 처리 필요
 
     await axios
-      .put("http://3.39.125.17/chat/orders", {
+      .put("http://3.39.164.26/chat/orders", {
         u_id: uId,
         p_id: openModal.items[0].p_id,
         menu: order.menu,

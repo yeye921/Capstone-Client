@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const POST_BASE_URL = "http://3.39.125.17/signup";
+const POST_BASE_URL = "http://3.39.164.26/signup";
 //윤정ip
 
 export const signData = async (inputData) => {
