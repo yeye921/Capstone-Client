@@ -38,8 +38,9 @@ const useStyles = makeStyles({
 
 const BottomTab = () => {
   const classes = useStyles();
-  const [value, setValue] = React.useState("");
-  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [value, setValue] = React.useState(0);
 
   useEffect(() => {
     if (location.pathname === "/main/chatlist") setValue(1);
@@ -67,7 +68,6 @@ const BottomTab = () => {
         >
           <BottomNavigationAction
             label="Home"
-            value=""
             icon={<HomeOutlinedIcon />}
             component={Link}
             to="/main"
@@ -81,14 +81,12 @@ const BottomTab = () => {
           {/* <BottomNavigationAction label="Like" icon={<FavoriteIcon />} /> */}
           <BottomNavigationAction
             label="Chat"
-            value="chatlist"
             icon={<ChatBubbleOutlineOutlinedIcon />}
             component={Link}
             to="/main/chatlist"
           />
           <BottomNavigationAction
             label="My"
-            value="mypage"
             icon={<FaceOutlinedIcon />}
             component={Link}
             to="/main/mypage"
