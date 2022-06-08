@@ -40,7 +40,7 @@ const Payment = (effect, deps) => {
       buyer_name: `${name}`,
       buyer_tel: "010-2217-8663", //테스트용
       buyer_addr: `${addr}`,
-      m_redirect_url: "http://3.39.125.17/payments/complete/mobile",
+      m_redirect_url: "http://3.39.164.26/payments/complete/mobile",
     };
     IMP.request_pay(data, callback);
   };
@@ -52,7 +52,7 @@ const Payment = (effect, deps) => {
   const callback = async (response) => {
     console.log(response);
     await axios
-      .post("http://3.39.125.17/payments/complete", {
+      .post("http://3.39.164.26/payments/complete", {
         imp_uid: response.imp_uid,
         merchant_uid: response.merchant_uid,
         uId: uId,

@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
-const BASE_URL = 'http://3.39.125.17/mymap';
+const BASE_URL = "http://3.39.164.26/mymap";
 
 export const mapData = async (input, roadAddr, lotAddr, x, y) => {
   const headers = {
-    'Access-Control-Allow-Origin': '*',
+    "Access-Control-Allow-Origin": "*",
   };
   try {
     const response = await axios.post(

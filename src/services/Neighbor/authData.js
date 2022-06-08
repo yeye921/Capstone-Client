@@ -1,11 +1,11 @@
 // 동네인증 데이터
-import axios from 'axios';
+import axios from "axios";
 
-const BASE_URL = 'http://3.39.125.17/neighbor';
+const BASE_URL = "http://3.39.164.26/neighbor";
 
 export const authData = async (uId, x, y, roadAddr, lotAddr) => {
   const headers = {
-    'Access-Control-Allow-Origin': '*',
+    "Access-Control-Allow-Origin": "*",
   };
   try {
     const response = await axios.put(
