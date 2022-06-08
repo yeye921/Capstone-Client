@@ -79,7 +79,7 @@ const ChatContainer = ({ state }) => {
   const navigate = useNavigate();
 
   //const { pId } = queryString.parse(state);
-  const here = useHere("here", "http://3.39.125.17/chat");
+  const here = useHere("here", "http://3.39.164.26/chat");
   const { data } = useQuery("here");
 
   const [place, setPlace] = useState(""); // 상단 바 나눔 위치
