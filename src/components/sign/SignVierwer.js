@@ -87,7 +87,7 @@ const SignViewer = () => {
 
   const getCheck = async (props) => {
     await axios
-      .get(`http://3.39.125.17/signup/certification?phoneNumber=${props}`)
+      .get(`http://3.39.164.26/signup/certification?phoneNumber=${props}`)
       .then((data) => {
         console.log(data.data);
         setPhoneCheck(data.data); //phoneCheck 설정

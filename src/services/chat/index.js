@@ -1,6 +1,6 @@
 import axios from "axios";
 import { QueryClient, useQuery } from "react-query";
-const BASE_URL = "http://3.39.125.17/chat";
+const BASE_URL = "http://3.39.164.26/chat";
 
 export const ssondaData = async (uId, pId) => {
   const headers = {

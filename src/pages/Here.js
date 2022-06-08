@@ -29,9 +29,9 @@ export default function Here() {
   useEffect(() => {
     axios
       .all([
-        axios.get(`http://3.39.125.17/chat?pId=${Info.state.pId}`),
+        axios.get(`http://3.39.164.26/chat?pId=${Info.state.pId}`),
         axios.get(
-          `http://3.39.125.17/chat/nanumPlaceInfo?pId=${Info.state.pId}`,
+          `http://3.39.164.26/chat/nanumPlaceInfo?pId=${Info.state.pId}`,
         ),
       ])
       .then(
@@ -61,7 +61,7 @@ export default function Here() {
 
   const getData = async () => {
     await axios
-      .get(`http://3.39.125.17/chat?pId=${Info.state.pId}`)
+      .get(`http://3.39.164.26/chat?pId=${Info.state.pId}`)
       .then((data) => {
         let users = data.data;
         if (users.length !== 0) {
@@ -73,7 +73,7 @@ export default function Here() {
 
   const getPLocation = async () => {
     await axios
-      .get(`http://3.39.125.17/chat/nanumPlaceInfo?pId=${Info.state.pId}`)
+      .get(`http://3.39.164.26/chat/nanumPlaceInfo?pId=${Info.state.pId}`)
       .then((response) => {
         setData({
           x: response.data.x,

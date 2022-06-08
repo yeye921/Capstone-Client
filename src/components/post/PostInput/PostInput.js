@@ -77,7 +77,7 @@ const PostInput = () => {
 
   const getData = async () => {
     await axios
-      .post("http://3.39.125.17:5000/getExpectedTime", {
+      .post("http://3.39.164.26:5000/getExpectedTime", {
         rName: rest.r_name,
         orderTime: orderTime,
       })
