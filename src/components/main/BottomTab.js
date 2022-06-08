@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import MuiBottomNavigationAction from "@mui/material/BottomNavigationAction";
@@ -9,13 +9,20 @@ import ChatBubbleOutlineOutlinedIcon from "@material-ui/icons/ChatBubbleOutlineO
 import FaceOutlinedIcon from "@material-ui/icons/FaceOutlined";
 import { styled } from "@mui/material/styles";
 
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import {
+  Link,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import MainViewer from "../main/main/MainViewer";
 import ChatListContainer from "../../containers/main/ChatListContainer";
 import MyContainer from "../../containers/main/MyContainer";
 import CartViewer from "./cart/CartViewer";
 import { idState, roadAddrState } from "../../state";
 import { useRecoilState } from "recoil";
+import queryString from "query-string";
 
 const BottomNavigationAction = styled(MuiBottomNavigationAction)(`
   &.Mui-selected {
@@ -33,6 +40,12 @@ const BottomTab = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.pathname === "/main/chatlist") setValue(1);
+    else if (location.pathname === "/main/mypage") setValue(2);
+    else setValue(0);
+  });
 
   return (
     <>

@@ -11,13 +11,28 @@ const OrderBox = styled(ModalContainer)`
 `;
 
 const OrderList = styled.div`
-  display: flex;
-  .item {
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    width: 20vw;
-    border: 2px inset;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  margin-bottom: 2vh;
+  display: grid;
+  grid-template-columns: 25vw 20vw 20vw;
+  grid-template-rows: 3vh 3vh;
+  align-items: center;
+  grid-template-areas:
+    "menu menu menu"
+    "none price fee";
+
+  .item:nth-child(1) {
+    text-align: left;
+    grid-area: menu;
+  }
+  .item:nth-child(2) {
+    text-align: right;
+    grid-area: price;
+  }
+  .item:nth-child(3) {
+    text-align: right;
+    grid-area: fee;
   }
 `;
 
@@ -33,13 +48,34 @@ const Text = styled.div`
   font-size: large;
   font-weight: 600;
 
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
 `;
 
 const OrderInput = styled.input`
   font-size: medium;
+  border: 0px;
+  font-weight: 600;
   ::placeholder {
     color: black;
+  }
+`;
+
+const OrderText = styled.div`
+  display: flex;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  height: 5vh;
+  p:nth-child(1) {
+    text-align: left;
+    flex-grow: 2;
+  }
+  p:nth-child(2) {
+    text-align: right;
+    flex-grow: 1;
+  }
+  p:nth-child(3) {
+    text-align: right;
+    flex-grow: 1;
   }
 `;
 
@@ -87,17 +123,16 @@ const OrderModal = ({ openModal, setOpenModal, closeModal }) => {
         <Background onClick={closeModal}>
           <OrderBox onClick={(e) => e.stopPropagation()}>
             <Text>주문서</Text>
-            <OrderList key={0}>
-              <p className="item">사용자</p>
-              <p className="item">메뉴</p>
-              <p className="item">가격</p>
-              <p className="item">배달비</p>
-            </OrderList>
+            <OrderText>
+              <p>메뉴</p>
+              <p>가격</p>
+              <p>배달비</p>
+            </OrderText>
+            <hr style={{ width: "70vw" }} />
             {openModal.items.map((item, index) => (
               <OrderList key={index}>
                 {item.u_id == uId ? (
                   <>
-                    <p className="item">나</p>
                     <OrderInput
                       className="item"
                       placeholder={item.menu}
@@ -112,16 +147,23 @@ const OrderModal = ({ openModal, setOpenModal, closeModal }) => {
                       value={order.price}
                       onChange={onChange}
                     />
+                    <p className="item" style={{ "font-weight": "600" }}>
+                      {item.fee}
+                    </p>
                   </>
                 ) : (
                   <>
-                    <p className="item"></p>
-                    <p className="item">{item.menu}</p>
-                    <p className="item">{item.price}</p>
+                    <p className="item" style={{ color: "gray" }}>
+                      {item.menu}
+                    </p>
+                    <p className="item" style={{ color: "gray" }}>
+                      {item.price}
+                    </p>
+                    <p className="item" style={{ color: "gray" }}>
+                      {item.fee}
+                    </p>
                   </>
                 )}
-
-                <p className="item">{item.fee}</p>
               </OrderList>
             ))}
             <OrderButton onClick={onPublish}>수정</OrderButton>
