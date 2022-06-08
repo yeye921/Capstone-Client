@@ -96,17 +96,17 @@ const ChatContainer = ({ state }) => {
 
   // 원래 주석처리 됨
   // if (data) {
-  //   // console.log("서버에서 받아온 나눔위치",data.place_name);
+  //   // console.log("서버에서 받아온 나눔위치",data.nanumPlace.place_name);
 
-  //   sendingHere(data.place_name);
+  //   sendingHere(data.nanumPlace.place_name);
   //   // 여기서 주문 확정 메시지도 보내야 함
   // }
 
   useEffect(() => {
     if (data) {
-      sendingHere(data.place_name);
+      sendingHere(data.nanumPlace.place_name);
       console.log("data", data);
-      console.log("data", data.place_name);
+      console.log("data", data.nanumPlace.place_name);
       // 이걸 보내고 나서 읽어와야 함
       // 여기서 주문 확정 알림 보냄
     }
