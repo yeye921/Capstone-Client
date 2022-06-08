@@ -1,4 +1,3 @@
-import { ControlPointDuplicate } from "@material-ui/icons";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";

@@ -103,7 +103,7 @@ const SignViewer = () => {
     <Form>
       <form onSubmit={onSubmit}>
         <InputContainer>
-          <Label>핸드폰번호</Label>
+          <Label>휴대폰번호</Label>
           <Input name="id" value={id} required onChange={onChange} />
         </InputContainer>
         <CheckContainer>

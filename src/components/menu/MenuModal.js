@@ -53,7 +53,7 @@ const MenuModal = ({ openModal, setOpenModal, closeModal, title }) => {
       setTitle(title);
       console.log("입장");
       closeModal();
-      alert("메뉴가 등록되었습니다. 채팅방으로 이동합니다.");
+      // alert("메뉴가 등록되었습니다. 채팅방으로 이동합니다.");
       console.log("메뉴모달 fee", response.fee);
       navigate(`/chat?pId=${openModal.postId}`, {
         state: {
