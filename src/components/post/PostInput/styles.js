@@ -68,10 +68,11 @@ const InputBox = styled(Input)`
 `;
 
 const Text = styled.div`
-  margin-top: 20vh;
-  margin-left: 20vw;
   color: #696969;
   font-size: small;
+  position: fixed;
+  bottom: 15vh;
+  right: 10vw;
 `;
 
 export {
