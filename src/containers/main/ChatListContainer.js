@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilState } from "recoil";
 import { idState } from "../../state";
-import ChatItems from "../../components/main/chats/ChatItems";
+import ChatItems from "../../components/main/Chats/ChatItems";
 import Header, { Spacer } from "../../components/common/Header";
 import { Margin } from "@mui/icons-material";
 
