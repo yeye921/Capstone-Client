@@ -1,4 +1,5 @@
-# 삼삼오오(사용자 위치 기반의 배달 공동구매 서비스)
+# 삼삼오오
+(사용자 위치 기반의 배달 공동구매 서비스)
 2022-1 Ajou SW Capstone Project 아주만능이조  
 Client Repository  
 
